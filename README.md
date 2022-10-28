@@ -9,16 +9,16 @@ And then modified to fulfill the requirements posed by the assignment.
 List of rules to be implemented: 
 * The game is for one player
 * The player start with 0 in their bank
-* Before the first round, when the game starts, a word is randamly chosen from predefined categories.
+* When the game starts, a word is randamly chosen from predefined categories.
   * The word and category is displayed on the screen
     * The word is initially hidden
 * In the first round, the wheel is "spun" by tapping a button. Here a player can land on: 
-  * "1500", which is the maximum amount of points you can win per round 
+  * A value e.g. "1500", which is the amount of points you gain by guessing a correct letter.
+    * The letter must be either a consonant or vowel from the danish alphabet
+    * The points that a player gets, is determined by the number of times a letter occur in the word
+    * If the occurence is 0, then the player looses a life (5 lifes) 
   * "FALLIT" or bankrupt, which takes all the earned points away from the player. 
-  * "TUR", which gives the player an extra turn
-  * 
-
-
-??????
-
-The assignment is to be undertaken individually and contributes 25% of the final grade.
+* The "wheel is spun" until the game is won or lost. 
+  * The game is won when all the letters have been found
+  * The game is lost when the player looses all of their lifes before the game is won.
+* The game should be able to be played again if a player has won or lost their current game  
