@@ -10,34 +10,27 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.s215824_lykkehjulet.ui.theme.S215824LykkehjuletTheme
+import com.example.s215824_lykkehjulet.model.App
+import com.example.s215824_lykkehjulet.view.theme.S215824LykkehjuletTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             S215824LykkehjuletTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
-                }
+                App()
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    S215824LykkehjuletTheme {
-        Greeting("Android")
-    }
-}
+/* General TO-DO list:
+ *
+ * TODO: When screen is tilt, make sure that the activities don't restart.
+ * YouTube link:
+ * https://www.youtube.com/watch?v=NVrFiogpyr8&list=PLSrm9z4zp4mEWwyiuYgVMWcDFdsebhM-r&index=51&ab_channel=Stevdza-San
+ *
+ *
+ *
+ *
+ */

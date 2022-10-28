@@ -1,4 +1,4 @@
-package com.example.s215824_lykkehjulet.ui.theme
+package com.example.s215824_lykkehjulet.view.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
