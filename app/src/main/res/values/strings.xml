@@ -18,8 +18,8 @@
     <string name="round">Runde</string>
     <string
         name="round_desc"
-        >Trykkes der på “Spin hjulet” kan man lande på to slags felter. Et “Fallit” felt eller et
-        "Værdi" felt. Lander man på værdi, vil man optjene point. Lander man derimod på et fallit
+        >Trykkes der på “Spin hjulet” kan man lande på to slags felter. Et \“Fallit\” felt eller et
+        \“Værdi\” felt. Lander man på værdi, vil man optjene point. Lander man derimod på et fallit
         felt, vil man miste alle sine optjente point</string>
     <string name="guess">Gæt</string>
     <string
