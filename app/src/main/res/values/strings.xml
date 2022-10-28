@@ -1,3 +1,36 @@
 <resources>
+    // Menu screen:
     <string name="app_name">s215824 Lykkehjulet</string>
+    <string name="game_title">Lykkehjulet</string>
+    <string name="see_rules">Se regler</string>
+    <string name="rules">Regler</string>
+    <string name="play">Spil</string>
+
+    // Rule screen:
+    <string name="one_player">Èn spiller</string>
+    <string name="one_player_desc">Spillet er for én spiller</string>
+    <string name="bank">Bank</string>
+    <string name="bank_desc">Spilleren starter med 0 point i deres bank</string>
+    <string name="game_start">Spillets start</string>
+    <string
+        name="random_word"
+        >Når spillet starter, vælges der et tilfældigt ord fra en katogori</string>
+    <string name="round">Runde</string>
+    <string
+        name="round_desc"
+        >Trykkes der på “Spin hjulet” kan man lande på to slags felter. Et “Fallit” felt eller et
+        "Værdi" felt. Lander man på værdi, vil man optjene point. Lander man derimod på et fallit
+        felt, vil man miste alle sine optjente point</string>
+    <string name="guess">Gæt</string>
+    <string
+        name="guess_desc"
+        >Derefter gættes der på et bogstav, hvoraf man kan vælge mellem konsonanter og vokaler.
+        De antal point, som en spiller får ved gæt af et rigtigt bogstav, bestemmes af antallet
+        af gange et bogstav forekommer i ordet</string>
+    <string name="life">Liv</string>
+    <string
+        name="life_desc"
+        >Du har 5 liv. Hvis et bogstav ikke forekommer i ordet, mister du et liv.
+        Spillet fortsætter indtil du har gættet ordet, eller du mister alle dine liv</string>
+
 </resources>
