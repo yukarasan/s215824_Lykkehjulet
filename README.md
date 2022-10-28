@@ -9,7 +9,9 @@ And then modified to fulfill the requirements posed by the assignment.
 List of rules to be implemented: 
 * The game is for one player
 * The player start with 0 in their bank
-* Before the first round, when the game starts, a word is randamly chosen from predefined categories. The word is then displayed on the screen along with the category it comes from.  
+* Before the first round, when the game starts, a word is randamly chosen from predefined categories.
+  * The word and category is displayed on the screen
+    * The word is initially hidden
 * In the first round, the wheel is "spun" by tapping a button. Here a player can land on: 
   * "1500", which is the maximum amount of points you can win per round 
   * "FALLIT" or bankrupt, which takes all the earned points away from the player. 
