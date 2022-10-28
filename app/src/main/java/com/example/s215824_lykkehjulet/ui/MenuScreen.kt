@@ -22,7 +22,7 @@ import com.example.s215824_lykkehjulet.data.manropeFamily
 
 @Preview    // TODO: Remove preview in future
 @Composable
-fun Menu() {
+fun MenuScreen() {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
