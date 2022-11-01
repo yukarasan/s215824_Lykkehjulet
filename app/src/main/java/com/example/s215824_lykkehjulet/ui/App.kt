@@ -6,7 +6,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.s215824_lykkehjulet.navigation.SetupNavGraph
 
-@Preview
 @Composable
 fun App() {
     val navController: NavHostController = rememberNavController()

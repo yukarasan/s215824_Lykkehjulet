@@ -12,6 +12,7 @@ import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -43,8 +44,8 @@ fun RulesScreen(navController: NavController) {
             BackButton(
                 navController,
                 modifier = Modifier
-                    .height(80.dp)
-                    .width(80.dp)
+                    .height(70.dp)
+                    .width(70.dp)
             )
         }
         item {
@@ -182,5 +183,5 @@ private fun RuleBox(
 @Preview
 @Composable
 fun RulesScreenPreview() {
-    MenuScreen(navController = rememberNavController())
+    RulesScreen(navController = rememberNavController())
 }
