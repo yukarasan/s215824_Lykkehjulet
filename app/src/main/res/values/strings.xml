@@ -32,5 +32,4 @@
         name="life_desc"
         >Du har 5 liv. Hvis et bogstav ikke forekommer i ordet, mister du et liv.
         Spillet fortsætter indtil du har gættet ordet, eller du mister alle dine liv</string>
-
 </resources>

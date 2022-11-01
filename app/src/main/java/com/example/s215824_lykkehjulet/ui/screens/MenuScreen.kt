@@ -17,12 +17,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.s215824_lykkehjulet.R
 import com.example.s215824_lykkehjulet.data.manropeFamily
+import com.example.s215824_lykkehjulet.model.navigation.Screen
 
-@Preview    // TODO: Remove preview in future
 @Composable
-fun MenuScreen() {
+fun MenuScreen(navController: NavController) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
@@ -35,6 +36,7 @@ fun MenuScreen() {
                 modifier = Modifier.padding(bottom = 60.dp)
             )
             SeeRulesButton(
+                navController,
                 modifier = Modifier
                     .width(185.dp)
                     .padding(bottom = 40.dp)
@@ -60,9 +62,13 @@ private fun GameTitle(title: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun SeeRulesButton(modifier: Modifier = Modifier, textModifier: Modifier = Modifier) {
+private fun SeeRulesButton(
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    textModifier: Modifier = Modifier
+) {
     Button(
-        onClick = { /*TODO*/ },
+        onClick = { navController.navigate(route = Screen.RulesScreen.route) },
         elevation = ButtonDefaults.elevation(12.dp),
         shape = RoundedCornerShape(100),
         colors = ButtonDefaults.buttonColors(Color(115, 115, 115)),

@@ -13,21 +13,23 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.s215824_lykkehjulet.R
 import com.example.s215824_lykkehjulet.data.manropeFamily
+import com.example.s215824_lykkehjulet.model.navigation.Screen
 
 /**
  * Since there are already a predefined sets of rules, a list of items will be sufficient here.
  */
-@Preview
 @Composable
-fun RulesScreen() {
+fun RulesScreen(navController: NavController) {
     val scrollPosition = rememberLazyListState()
 
     LazyColumn(
@@ -38,7 +40,14 @@ fun RulesScreen() {
             .fillMaxSize()
             .background(Color.White)
     ) {
-        item { BackButton() }
+        item {
+            BackButton(
+                navController,
+                modifier = Modifier
+                    .height(80.dp)
+                    .width(80.dp)
+            )
+        }
         item {
             RuleBox(
                 title = stringResource(id = R.string.one_player),
@@ -121,14 +130,12 @@ fun RulesScreen() {
 }
 
 @Composable
-private fun BackButton() {
+private fun BackButton(navController: NavController, modifier: Modifier = Modifier) {
     Button(
-        onClick = { /*TODO*/ },
+        onClick = { navController.popBackStack() }, // Instead of navigate, pop screen from stack
         shape = RoundedCornerShape(100),
         colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black),
-        modifier = Modifier
-            .height(80.dp)
-            .width(80.dp)
+        modifier = modifier
     ) {
         Image(
             painter = painterResource(id = R.drawable.arrow_back),
