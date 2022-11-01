@@ -1,4 +1,4 @@
-package com.example.s215824_lykkehjulet.data
+package com.example.s215824_lykkehjulet
 
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily

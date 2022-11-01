@@ -2,10 +2,9 @@ package com.example.s215824_lykkehjulet.model
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.s215824_lykkehjulet.model.navigation.SetupNavGraph
+import com.example.s215824_lykkehjulet.navigation.SetupNavGraph
 
 @Preview
 @Composable

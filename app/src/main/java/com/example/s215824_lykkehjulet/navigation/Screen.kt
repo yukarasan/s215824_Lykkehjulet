@@ -1,6 +1,7 @@
-package com.example.s215824_lykkehjulet.model.navigation
+package com.example.s215824_lykkehjulet.navigation
 
 sealed class Screen(val route: String) {
     object MenuScreen: Screen(route = "menu")
     object RulesScreen: Screen(route = "rules")
+    object GameScreen: Screen(route = "game")
 }

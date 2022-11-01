@@ -5,22 +5,21 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.ButtonElevation
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.s215824_lykkehjulet.R
-import com.example.s215824_lykkehjulet.data.manropeFamily
-import com.example.s215824_lykkehjulet.model.navigation.Screen
+import com.example.s215824_lykkehjulet.manropeFamily
+import com.example.s215824_lykkehjulet.navigation.Screen
 
 @Composable
 fun MenuScreen(navController: NavController) {
@@ -42,6 +41,7 @@ fun MenuScreen(navController: NavController) {
                     .padding(bottom = 40.dp)
             )
             PlayGameButton(
+                navController,
                 modifier = Modifier
                     .width(185.dp)
             )
@@ -86,9 +86,13 @@ private fun SeeRulesButton(
 }
 
 @Composable
-private fun PlayGameButton(modifier: Modifier = Modifier, textModifier: Modifier = Modifier) {
+private fun PlayGameButton(
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    textModifier: Modifier = Modifier
+) {
     Button(
-        onClick = { /*TODO*/ },
+        onClick = { navController.navigate(Screen.GameScreen.route) },
         elevation = ButtonDefaults.elevation(12.dp),
         shape = RoundedCornerShape(100),
         colors = ButtonDefaults.buttonColors(Color.Black),
@@ -103,4 +107,10 @@ private fun PlayGameButton(modifier: Modifier = Modifier, textModifier: Modifier
             modifier = textModifier
         )
     }
+}
+
+@Preview
+@Composable
+fun MenuScreenPreview() {
+    MenuScreen(navController = rememberNavController())
 }
