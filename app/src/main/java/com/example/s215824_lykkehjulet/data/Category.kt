@@ -10,4 +10,10 @@ class Category {
     fun jobTitle(): List<String> {
         return listOf("LÆGE", "ADVOKAT", "LÆRER")
     }
+    fun clothes(): List<String> {
+        return listOf("TRØJE", "KASET", "JAKKE")
+    }
+    fun cities(): List<String> {
+        return listOf("Frederikssund", "Ballerup", "Lyngby")
+    }
 }

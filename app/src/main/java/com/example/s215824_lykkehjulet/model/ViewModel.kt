@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import java.util.*
 
 class ViewModel: ViewModel() {
     // UI state
@@ -33,15 +34,17 @@ class ViewModel: ViewModel() {
     }
 
     private fun pickRandomCategory() {
-        // Creates a random number between 1 and 3, to choose between the 3 different categories
-        val randomCategory = (1..3).random()
+        // Creates a random number between 1 and 5, to choose between the 5 different categories
+        val randomCategory = (1..5).shuffled().last()
 
-        // Sets the current category equal to the chosen category.
         when (randomCategory) {
-            1 -> currentCategory = "animals"
-            2 -> currentCategory = "cars"
-            3 -> currentCategory = "jobTitle"
+            1 -> currentCategory = "Dyr"
+            2 -> currentCategory = "Biler"
+            3 -> currentCategory = "Job titler"
+            4 -> currentCategory = "Tøj"
+            5 -> currentCategory = "Byer"
         }
+
         _uiState.value.category = currentCategory
     }
 
