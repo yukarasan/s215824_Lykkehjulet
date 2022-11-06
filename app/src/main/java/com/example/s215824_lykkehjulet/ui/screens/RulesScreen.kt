@@ -27,13 +27,11 @@ import com.example.s215824_lykkehjulet.manropeFamily
 
 /**
  * Since there are already a predefined sets of rules, a list of items will be sufficient here.
+ * Also this screen is stateless. It only uses the navController.
  */
 @Composable
 fun RulesScreen(navController: NavController) {
-    val scrollPosition = rememberLazyListState()
-
     LazyColumn(
-        state = scrollPosition,
         verticalArrangement = Arrangement.spacedBy(30.dp),
         contentPadding = PaddingValues(30.dp),
         modifier = Modifier
@@ -155,14 +153,14 @@ private fun RuleBox(
 ) {
     Card(
         shape = RoundedCornerShape(14.dp),
-        backgroundColor = Color(115, 115, 115),
+        backgroundColor = Color(217, 217, 217),
         elevation = 5.dp,
         modifier = modifier
     ) {
         Column() {
             Text(
                 text = title,
-                color = Color.White,
+                color = Color.Black,
                 fontSize = 30.sp,
                 fontFamily = manropeFamily,
                 fontWeight = FontWeight.Bold,
@@ -170,7 +168,7 @@ private fun RuleBox(
             )
             Text(
                 text = description,
-                color = Color.White,
+                color = Color.Black,
                 fontSize = 20.sp,
                 fontFamily = manropeFamily,
                 fontWeight = FontWeight.Bold,
