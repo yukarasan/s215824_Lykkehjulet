@@ -32,4 +32,14 @@
         name="life_desc"
         >Du har 5 liv. Hvis et bogstav ikke forekommer i ordet, mister du et liv.
         Spillet fortsætter indtil du har gættet ordet, eller du mister alle dine liv</string>
+    
+    
+    // Game Screen: 
+    <string name="point">Point</string>
+    <string name="category">Kategori</string>
+    <string name="lives">Liv</string>
+    <string name="spin_wheel">Drej hjullet</string>
+    <string name="stop_wheel">Stop</string>
+    <string name="spin_result">Du rollede $d! Gæt et bogstav</string>
+    
 </resources>
