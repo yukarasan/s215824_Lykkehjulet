@@ -1,4 +1,4 @@
-package com.example.s215824_lykkehjulet.ui
+package com.example.s215824_lykkehjulet.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -21,6 +21,11 @@ import com.example.s215824_lykkehjulet.R
 import com.example.s215824_lykkehjulet.manropeFamily
 import com.example.s215824_lykkehjulet.navigation.Screen
 
+/**
+ * This screen is stateless. It only uses the navController.
+ * From this screen, a user is able to either navigate to the rules of the game, or navigate
+ * to the GameScreen and start playing.
+ */
 @Composable
 fun MenuScreen(navController: NavController) {
     Box(
@@ -71,12 +76,12 @@ private fun SeeRulesButton(
         onClick = { navController.navigate(route = Screen.RulesScreen.route) },
         elevation = ButtonDefaults.elevation(12.dp),
         shape = RoundedCornerShape(100),
-        colors = ButtonDefaults.buttonColors(Color(115, 115, 115)),
+        colors = ButtonDefaults.buttonColors(Color(217, 217, 217)),
         modifier = modifier
     ) {
         Text(
             text = stringResource(id = R.string.see_rules),
-            color = Color.White,
+            color = Color.Black,
             fontSize = 30.sp,
             fontFamily = manropeFamily,
             fontWeight = FontWeight.Bold,
