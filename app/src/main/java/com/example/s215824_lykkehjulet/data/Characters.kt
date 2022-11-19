@@ -1,8 +1,7 @@
 package com.example.s215824_lykkehjulet.data
 
 /**
- * For future development, a different alphabet can be added by simply adding another
- * function for this class.
+ * For future development, a different alphabet can be added in another function.
  */
 class Characters {
     fun loadDanishCharacters(): List<Char> {

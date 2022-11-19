@@ -1,19 +1,19 @@
 package com.example.s215824_lykkehjulet.data
 
 class Category {
-    fun animals(): List<String> {
-        return listOf("HUND", "KAT", "MUS")
+    fun animals(): MutableList<String> {
+        return mutableListOf("HUND", "KAT", "MUS")
     }
-    fun cars(): List<String> {
-        return listOf("BMW", "AUDI", "MERCEDES")
+    fun cars(): MutableList<String> {
+        return mutableListOf("BMW", "AUDI", "MERCEDES")
     }
-    fun jobTitle(): List<String> {
-        return listOf("LÆGE", "ADVOKAT", "LÆRER")
+    fun jobTitle(): MutableList<String> {
+        return mutableListOf("LÆGE", "ADVOKAT", "LÆRER")
     }
-    fun clothes(): List<String> {
-        return listOf("TRØJE", "KASET", "JAKKE")
+    fun clothes(): MutableList<String> {
+        return mutableListOf("TRØJE", "KASKET", "JAKKE")
     }
-    fun cities(): List<String> {
-        return listOf("Frederikssund", "Ballerup", "Lyngby")
+    fun cities(): MutableList<String> {
+        return mutableListOf("FREDERIKSSUND", "BALLERUP", "LYNGBY")
     }
 }

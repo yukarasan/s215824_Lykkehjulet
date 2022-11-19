@@ -42,4 +42,11 @@
     <string name="stop_wheel">Stop</string>
     <string name="spin_result">Du rollede $d! Gæt et bogstav</string>
     
+    // Categories:
+    <string name="animals">Dyr</string>
+    <string name="cars">Biler</string>
+    <string name="clothes">Tøj</string>
+    <string name="jobTitles">Dyr</string>
+    <string name="cities">Byer</string>
+    
 </resources>
