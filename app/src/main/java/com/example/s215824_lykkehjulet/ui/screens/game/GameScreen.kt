@@ -96,7 +96,6 @@ fun GameScreen(
                         },
                         enabled = false
                     )
-                    isGuessed.value = true
                 } else {
                     WheelSpunButton(
                         turnOrStopMessage = false,  // "Drej hjulet"
@@ -104,7 +103,7 @@ fun GameScreen(
                             wheelSpunState = true
                             isSpun.value = true
                         },
-                        enabled = true  // Used to enable the button.
+                        enabled = false  // Used to enable the button.
                     )
                 }
             }
@@ -117,6 +116,7 @@ fun GameScreen(
                     isSpun.value = false
                     // Picks a random number from the wheel:
                     gameViewModel.pickPointFromWheel()
+                    isGuessed.value = true
                 },
                 enabled = false
             )

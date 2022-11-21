@@ -164,15 +164,14 @@ class GameViewModel :
         _uiState.value.haveUserSpunWheel = true
     }
 
+    // TODO: If user guess is correct, then make the letter in the word no longer hidden.
 
     fun checkUserGuess(guessedCharacter: String) {
-        // If user guess is correct, then make the letter no longer hidden. Example, boolean value
-        //
         uiState.value.guessedCharacter = guessedCharacter
         _uiState.value.haveUserSpunWheel = false
         _uiState.value.haveUserGuessed = true
 
-        if (currentWord.contains(uiState.value.guessedCharacter)) {     // TODO: guessedCharacter is always Å. Fix this.
+        if (currentWord.contains(uiState.value.guessedCharacter)) {
             _uiState.value.isGuessedWordCorrect = true
 
             if (_uiState.value.assignedPoint == 0) {
