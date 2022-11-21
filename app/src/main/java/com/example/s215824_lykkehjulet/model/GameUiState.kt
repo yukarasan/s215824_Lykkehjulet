@@ -13,6 +13,7 @@ data class GameUiState(
     var haveUserSpunWheel: Boolean = false,
     var haveUserGuessed: Boolean = false,
     var isGuessedWordCorrect: Boolean = false,
+    var guessedCharacter: String = "",
     val isGameOver: Boolean = false,
 )
 

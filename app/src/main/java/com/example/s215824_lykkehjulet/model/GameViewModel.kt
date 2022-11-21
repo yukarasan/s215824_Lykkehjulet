@@ -1,6 +1,7 @@
 package com.example.s215824_lykkehjulet.model
 
 import android.graphics.drawable.Animatable
+import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.s215824_lykkehjulet.data.Category
@@ -64,6 +65,7 @@ class GameViewModel :
     private fun pickRandomWordFromCategory(): String {
         val category = Category()
 
+        // TODO: Once the player has won, make sure that the player wont get the same word from category.
         // if (category.animals().isEmpty())
 
         if (currentCategory == "Dyr") {
@@ -162,19 +164,30 @@ class GameViewModel :
         _uiState.value.haveUserSpunWheel = true
     }
 
-    fun updatePoint() {
-        if (_uiState.value.assignedPoint == 0) {
-            _uiState.value.point = 0
-        } else {
-            _uiState.value.point = _uiState.value.point + (uiState.value.assignedPoint) // TODO: Multiply with number of correctGuess's
-        }
 
-        uiState.value.haveUserGuessed = true
-        _uiState.value.haveUserSpunWheel = false
-    }
-
-    private fun checkUserGuess() {
+    fun checkUserGuess(guessedCharacter: String) {
         // If user guess is correct, then make the letter no longer hidden. Example, boolean value
         //
+        uiState.value.guessedCharacter = guessedCharacter
+        _uiState.value.haveUserSpunWheel = false
+        _uiState.value.haveUserGuessed = true
+
+        if (currentWord.contains(uiState.value.guessedCharacter)) {     // TODO: guessedCharacter is always Å. Fix this.
+            _uiState.value.isGuessedWordCorrect = true
+
+            if (_uiState.value.assignedPoint == 0) {
+                _uiState.value.point = 0
+            } else {
+                _uiState.value.point = _uiState.value.point + (uiState.value.assignedPoint) // TODO: Multiply with number of occurrences
+            }
+
+        } else {
+            _uiState.value.isGuessedWordCorrect = false
+            _uiState.value.lives--
+        }
+    }
+
+    fun playAgain() {
+        resetGame()
     }
 }

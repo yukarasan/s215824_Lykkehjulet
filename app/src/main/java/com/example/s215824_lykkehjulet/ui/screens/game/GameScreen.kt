@@ -1,6 +1,7 @@
 package com.example.s215824_lykkehjulet.ui.screens.game
 
-import android.content.ClipData
+import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -27,7 +28,9 @@ import com.example.s215824_lykkehjulet.R
 import com.example.s215824_lykkehjulet.manropeFamily
 import com.example.s215824_lykkehjulet.model.GameUiState
 import com.example.s215824_lykkehjulet.model.GameViewModel
+import com.example.s215824_lykkehjulet.navigation.Screen
 
+@SuppressLint("UnrememberedMutableState")
 @Composable
 fun GameScreen(
     navController: NavController,
@@ -42,7 +45,12 @@ fun GameScreen(
      * it won't count as a bad thing.
      */
     var wheelSpunState by remember { mutableStateOf(false) }
-    var isSpun by remember { mutableStateOf(false) }
+
+    val spun = mutableStateOf(false)
+    val isSpun by remember { mutableStateOf(spun) }
+
+    val guess = mutableStateOf(false)
+    val isGuessed by remember { mutableStateOf(guess) }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -50,6 +58,13 @@ fun GameScreen(
             .fillMaxWidth()
             .padding(top = 20.dp, start = 20.dp, end = 20.dp, bottom = 5.dp)
     ) {
+        // When player have no more lives, they'll be navigated to the lost screen.
+        if (gameUiState.lives == 0) {
+            LaunchedEffect(Unit) {
+                navController.navigate(route = Screen.GameLostScreen.route)
+            }
+        }
+
         TopBarDescription(
             category = gameUiState.category,
             lives = gameUiState.lives,
@@ -60,33 +75,51 @@ fun GameScreen(
 
         WheelRotateAnimation(isSpun = wheelSpunState)
 
-        if (!isSpun) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
+        if (!isSpun.value) {
+            // First spin button when the user has not made a spun yet:
+            if (!gameUiState.haveUserSpunWheel) {
                 WheelSpunButton(
-                    isSpun = false,
+                    turnOrStopMessage = false,  // If false, then ask user to "Drej hjulet"
                     onClick = {
                         wheelSpunState = true
-                        isSpun = true
-                    }
+                        isSpun.value = true
+                    },
+                    enabled = true  // Used to enable the button.
                 )
+            } else {
+                if (!isGuessed.value) {
+                    WheelSpunButton(
+                        turnOrStopMessage = false,  // "Drej hjulet"
+                        onClick = {
+                            wheelSpunState = true
+                            isSpun.value = true
+                        },
+                        enabled = false
+                    )
+                    isGuessed.value = true
+                } else {
+                    WheelSpunButton(
+                        turnOrStopMessage = false,  // "Drej hjulet"
+                        onClick = {
+                            wheelSpunState = true
+                            isSpun.value = true
+                        },
+                        enabled = true  // Used to enable the button.
+                    )
+                }
             }
         } else {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                WheelSpunButton(
-                    isSpun = true,
-                    onClick = {
-                        wheelSpunState = false
-                        isSpun = false
-                        gameViewModel.pickPointFromWheel()
-                    }
-                )
-            }
+            // Stop button:
+            WheelSpunButton(
+                turnOrStopMessage = true,   // "Stop"
+                onClick = {
+                    wheelSpunState = false
+                    isSpun.value = false
+                    // Picks a random number from the wheel:
+                    gameViewModel.pickPointFromWheel()
+                },
+                enabled = false
+            )
         }
 
         Column(
@@ -97,59 +130,56 @@ fun GameScreen(
         ) {
             if (!gameUiState.haveUserSpunWheel) {
                 TellToSpinWheel()
+                IsGuessCorrectOrNot(isGuessCorrect = gameUiState.isGuessedWordCorrect) // TODO: Move
             } else {
-                PickedFromWheel(gameUiState.assignedPoint, gameViewModel)
+                PickedFromWheel(gameUiState.assignedPoint)
             }
 
-            LazyColumn() {
+            /*
+             * There is one instance where one of the words use two rows on the screen. Therefore
+             * a scrollable column for the characters are needed.
+             */
+            LazyColumn {
                 item {
-                    Characters(row = 1,
+                    Characters(
+                        row = 1,
                         gameViewModel = gameViewModel,
-                        gameUiState = gameUiState,
-                        onClick = {
-                            gameViewModel.updatePoint()
-                        }
+                        showCharacters = isGuessed.value,
+                        isGuessed = isGuessed,
+                        uiState = gameUiState,
                     )
-                    Characters(row = 2,
+                    Characters(
+                        row = 2,
                         gameViewModel = gameViewModel,
-                        gameUiState = gameUiState,
-                        onClick = {
-                            gameViewModel.updatePoint()
-                        }
+                        showCharacters = isGuessed.value,
+                        isGuessed = isGuessed,
+                        uiState = gameUiState
                     )
-                    Characters(row = 3,
+                    Characters(
+                        row = 3,
                         gameViewModel = gameViewModel,
-                        gameUiState = gameUiState,
-                        onClick = {
-                            gameViewModel.updatePoint()
-                        }
+                        showCharacters = isGuessed.value,
+                        isGuessed = isGuessed,
+                        uiState = gameUiState
                     )
-                    Characters(row = 4,
+                    Characters(
+                        row = 4,
                         gameViewModel = gameViewModel,
-                        gameUiState = gameUiState,
-                        onClick = {
-                            gameViewModel.updatePoint()
-                        }
+                        showCharacters = isGuessed.value,
+                        isGuessed = isGuessed,
+                        uiState = gameUiState
                     )
-                    Characters(row = 5,
+                    Characters(
+                        row = 5,
                         gameViewModel = gameViewModel,
-                        gameUiState = gameUiState,
-                        onClick = {
-                            gameViewModel.updatePoint()
-                        }
+                        showCharacters = isGuessed.value,
+                        isGuessed = isGuessed,
+                        uiState = gameUiState
                     )
                 }
             }
-
-            // TODO: Remember that a user should not be able to guess more than one time pr. round.
         }
     }
-
-    /**
-     * TODO: if the wheel is currently spinning then the buttons should not be clicked.
-     * TODO: If the wheel is standing still, the buttons needs to be clicked.
-     */
-
 
     /**
      * PlayAgainButton -- Once the game is over, a play again button should appear asking the
@@ -239,19 +269,19 @@ fun Word(wordLength: Int, uiState: GameUiState) {
 
     Column(modifier = Modifier.padding(bottom = 5.dp)) {
         if (wordLength <= 8) {
-            Row() {
+            Row {
                 for (i in 1..wordLength) {  // Should later be: for (item in collection)
                     Letter(letter.get(i - 1))
                 }
             }
         }
         if (wordLength > 8) {
-            Row() {
+            Row {
                 for (i in 1..firstRow) {  // Should later be: for (item in collection)
                     Letter(letter.get(i - 1))
                 }
             }
-            Row() {
+            Row {
                 for (i in 1..wordLength - 8) {  // Should later be: for (item in collection)
                     Letter(letter.get(8 + (i - 1)))
                 }
@@ -283,47 +313,63 @@ fun Letter(letter: Char) {
 fun Characters(
     row: Int,
     gameViewModel: GameViewModel,
-    gameUiState: GameUiState,
-    onClick: () -> Unit
+    showCharacters: Boolean,
+    isGuessed: MutableState<Boolean>,
+    uiState: GameUiState,
 ) {
     gameViewModel.getDanishCharacters(row)
 
-    Row() {
+    Row {
         for (i in 0 until gameViewModel.getDanishCharacters(row).size) {
-            LettersToChooseFrom(
-                character = gameViewModel.getDanishCharacters(row)[i],
-                gameViewModel = gameViewModel,
-                gameUiState = gameUiState,
-                onClick = onClick
-            )
+            if (showCharacters) {
+                OutlinedButton(
+                    border = BorderStroke(2.dp, Color.Black),
+                    onClick = {
+                        gameViewModel.checkUserGuess(gameViewModel.getDanishCharacters(row)[i].toString())
+                        isGuessed.value = false
+                    },
+                    enabled = true,
+                    modifier = Modifier
+                        .padding(top = 20.dp, start = 5.dp, end = 5.dp)
+                        .size(33.dp)
+                ) {
+                    Text(
+                        text = gameViewModel.getDanishCharacters(row)[i].toString(),
+                        fontFamily = manropeFamily,
+                        fontWeight = FontWeight.Medium,
+                        fontSize = 13.sp,
+                        color = Color.Black,
+                        textAlign = TextAlign.Center
+                    )
+                }
+            } else {
+                OutlinedButton(
+                    border = BorderStroke(2.dp, Color.Black),
+                    onClick = {
+                        gameViewModel.checkUserGuess(gameViewModel.getDanishCharacters(row)[i].toString())
+                        isGuessed.value = false
+                    },
+                    enabled = false,
+                    colors = ButtonDefaults.buttonColors(Color.DarkGray),
+                    modifier = Modifier
+                        .padding(top = 20.dp, start = 5.dp, end = 5.dp)
+                        .size(33.dp)
+                ) {
+                    Text(
+                        text = gameViewModel.getDanishCharacters(row)[i].toString(),
+                        fontFamily = manropeFamily,
+                        fontWeight = FontWeight.Medium,
+                        fontSize = 13.sp,
+                        color = Color.Black,
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }
         }
     }
+    // Log.d("A", gameViewModel.getDanishCharacters(row)[i].toString())
 }
 
-@Composable
-fun LettersToChooseFrom(
-    character: Char,
-    gameViewModel: GameViewModel,
-    gameUiState: GameUiState,
-    onClick: () -> Unit
-) {
-    OutlinedButton(
-        border = BorderStroke(2.dp, Color.Black),
-        onClick = onClick,
-        modifier = Modifier
-            .padding(top = 20.dp, start = 5.dp, end = 5.dp)
-            .size(33.dp)
-    ) {
-        Text(
-            text = character.toString(),
-            fontFamily = manropeFamily,
-            fontWeight = FontWeight.Medium,
-            fontSize = 13.sp,
-            color = Color.Black,
-            textAlign = TextAlign.Center
-        )
-    }
-}
 
 @Composable
 fun WheelRotateAnimation(isSpun: Boolean = false) {
@@ -347,22 +393,21 @@ fun WheelRotateAnimation(isSpun: Boolean = false) {
 
     if (!isSpun) {
         StillWheelImage(rotateDegree = rotation.value)
-    } else if (isSpun) {
+    } else {
         SpinningWheelImage(rotateDegree = rotation.value)
     }
 }
 
 @Composable
-fun WheelSpunButton(isSpun: Boolean, onClick: () -> Unit) {
-    if (!isSpun) {
+fun WheelSpunButton(turnOrStopMessage: Boolean, enabled: Boolean, onClick: () -> Unit) {
+    if (!turnOrStopMessage) {
         Button(
             onClick = onClick,
             shape = RoundedCornerShape(100),
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black),
+            enabled = enabled,
             modifier = Modifier
                 .height(40.dp)
-                .padding(start = 115.dp, end = 115.dp)
-                .fillMaxWidth()
         ) {
             Text(
                 text = stringResource(id = R.string.spin_wheel),
@@ -379,8 +424,6 @@ fun WheelSpunButton(isSpun: Boolean, onClick: () -> Unit) {
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red),
             modifier = Modifier
                 .height(40.dp)
-                .padding(start = 115.dp, end = 115.dp)
-                .fillMaxWidth()
         ) {
             Text(
                 text = stringResource(id = R.string.stop_wheel),
@@ -436,7 +479,7 @@ fun SpinningWheelImage(rotateDegree: Float = 0f) {
  * If the player landed on 0, then
  */
 @Composable
-fun PickedFromWheel(assignedPoint: Int, gameViewModel: GameViewModel) {
+fun PickedFromWheel(assignedPoint: Int) {
     if (assignedPoint != 0) {
         Text(
             text = "Du rollede $assignedPoint! Gæt et bogstav",
@@ -448,22 +491,20 @@ fun PickedFromWheel(assignedPoint: Int, gameViewModel: GameViewModel) {
         )
     } else {
         Text(
-            text = "Du rollede desværre $assignedPoint. Du mister derfor alle dine point :(",
+            text = "Du rollede desværre 0. Du mister derfor alle dine point :(",
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
             fontSize = 16.sp,
             color = Color.Black,
             textAlign = TextAlign.Center
         )
-
-        // TODO: Reduce amount of points here with a function from ViewModel
     }
 }
 
 @Composable
 fun TellToSpinWheel() {
     Text(
-        text = "Drej hjullet for at gætte et bogstav!",
+        text = "Drej hjulet for at gætte et bogstav!",
         fontFamily = manropeFamily,
         fontWeight = FontWeight.ExtraBold,
         fontSize = 16.sp,
@@ -475,9 +516,9 @@ fun TellToSpinWheel() {
 @Composable
 fun IsGuessCorrectOrNot(isGuessCorrect: Boolean) {
     if (isGuessCorrect) {
-        Text(text = "That is correct")
+        Text(text = "Det er korrekt")
     } else {
-        Text(text = "That is NOT correct")
+        Text(text = "Det er ikke korrekt")
     }
 }
 

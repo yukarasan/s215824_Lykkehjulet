@@ -38,7 +38,7 @@
     <string name="point">Point</string>
     <string name="category">Kategori</string>
     <string name="lives">Liv</string>
-    <string name="spin_wheel">Drej hjullet</string>
+    <string name="spin_wheel">Drej hjulet</string>
     <string name="stop_wheel">Stop</string>
     <string name="spin_result">Du rollede $d! Gæt et bogstav</string>
     

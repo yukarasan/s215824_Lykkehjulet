@@ -7,7 +7,9 @@ import androidx.navigation.compose.composable
 import com.example.s215824_lykkehjulet.model.GameUiState
 import com.example.s215824_lykkehjulet.ui.screens.MenuScreen
 import com.example.s215824_lykkehjulet.ui.RulesScreen
+import com.example.s215824_lykkehjulet.ui.screens.game.GameLostScreen
 import com.example.s215824_lykkehjulet.ui.screens.game.GameScreen
+import com.example.s215824_lykkehjulet.ui.screens.game.GameWonScreen
 
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
@@ -20,6 +22,12 @@ fun SetupNavGraph(navController: NavHostController) {
         }
         composable(route = Screen.GameScreen.route) {
             GameScreen(navController = navController)
+        }
+        composable(route = Screen.GameLostScreen.route) {
+            GameLostScreen(navController = navController)
+        }
+        composable(route = Screen.GameWonScreen.route) {
+            GameWonScreen(navController = navController)
         }
     }
 }
