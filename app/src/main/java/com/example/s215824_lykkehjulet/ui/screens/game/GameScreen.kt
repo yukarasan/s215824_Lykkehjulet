@@ -130,9 +130,13 @@ fun GameScreen(
         ) {
             if (!gameUiState.haveUserSpunWheel) {
                 TellToSpinWheel()
-                IsGuessCorrectOrNot(isGuessCorrect = gameUiState.isGuessedWordCorrect) // TODO: Move
             } else {
                 PickedFromWheel(gameUiState.assignedPoint)
+            }
+
+            if (gameUiState.haveUserGuessed) {
+                IsGuessCorrectOrNot(isGuessCorrect = gameUiState.isGuessedWordCorrect)
+                gameUiState.haveUserGuessed = false
             }
 
             /*
