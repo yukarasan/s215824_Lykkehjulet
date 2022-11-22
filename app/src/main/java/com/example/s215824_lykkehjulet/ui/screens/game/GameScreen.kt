@@ -35,9 +35,9 @@ import com.example.s215824_lykkehjulet.navigation.Screen
 @Composable
 fun GameScreen(
     navController: NavController,
-    gameViewModel: GameViewModel = viewModel()
+    gameUiState: GameUiState,
+    gameViewModel: GameViewModel
 ) {
-    val gameUiState by gameViewModel.uiState.collectAsState()
 
     /**
      * I could not make the wheel spin work without declaring the states here.
@@ -128,66 +128,67 @@ fun GameScreen(
                 enabled = false
             )
         }
+    }
 
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(20.dp)
-        ) {
-            if (!gameUiState.haveUserSpunWheel) {
-                TellToSpinWheel()
-            } else {
-                PickedFromWheel(gameUiState.assignedPoint)
-            }
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Bottom,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(20.dp)
+    ) {
+        if (!gameUiState.haveUserSpunWheel) {
+            TellToSpinWheel()
+        } else {
+            PickedFromWheel(gameUiState.assignedPoint)
+        }
 
-            if (gameUiState.haveUserGuessed) {
-                IsGuessCorrectOrNot(isGuessCorrect = gameUiState.isGuessedWordCorrect)
-                gameUiState.haveUserGuessed = false
-            }
+        if (gameUiState.haveUserGuessed) {
+            IsGuessCorrectOrNot(uiState = gameUiState)
+            gameUiState.haveUserGuessed = false
+        }
 
-            /*
-             * There is one instance where one of the words use two rows on the screen. Therefore
-             * a scrollable column for the characters are needed.
-             */
-            LazyColumn {
-                item {
-                    Characters(
-                        row = 1,
-                        gameViewModel = gameViewModel,
-                        showCharacters = isGuessed.value,
-                        isGuessed = isGuessed,
-                        uiState = gameUiState,
-                    )
-                    Characters(
-                        row = 2,
-                        gameViewModel = gameViewModel,
-                        showCharacters = isGuessed.value,
-                        isGuessed = isGuessed,
-                        uiState = gameUiState
-                    )
-                    Characters(
-                        row = 3,
-                        gameViewModel = gameViewModel,
-                        showCharacters = isGuessed.value,
-                        isGuessed = isGuessed,
-                        uiState = gameUiState
-                    )
-                    Characters(
-                        row = 4,
-                        gameViewModel = gameViewModel,
-                        showCharacters = isGuessed.value,
-                        isGuessed = isGuessed,
-                        uiState = gameUiState
-                    )
-                    Characters(
-                        row = 5,
-                        gameViewModel = gameViewModel,
-                        showCharacters = isGuessed.value,
-                        isGuessed = isGuessed,
-                        uiState = gameUiState
-                    )
-                }
+        /*
+         * There is one instance where one of the words use two rows on the screen. Therefore
+         * a scrollable column for the characters are needed.
+         */
+        LazyColumn {
+            item {
+                Characters(
+                    row = 1,
+                    gameViewModel = gameViewModel,
+                    showCharacters = isGuessed.value,
+                    isGuessed = isGuessed,
+                    uiState = gameUiState,
+                )
+                Characters(
+                    row = 2,
+                    gameViewModel = gameViewModel,
+                    showCharacters = isGuessed.value,
+                    isGuessed = isGuessed,
+                    uiState = gameUiState
+                )
+                Characters(
+                    row = 3,
+                    gameViewModel = gameViewModel,
+                    showCharacters = isGuessed.value,
+                    isGuessed = isGuessed,
+                    uiState = gameUiState
+                )
+                Characters(
+                    row = 4,
+                    gameViewModel = gameViewModel,
+                    showCharacters = isGuessed.value,
+                    isGuessed = isGuessed,
+                    uiState = gameUiState
+                )
+                Characters(
+                    row = 5,
+                    gameViewModel = gameViewModel,
+                    showCharacters = isGuessed.value,
+                    isGuessed = isGuessed,
+                    uiState = gameUiState
+                )
             }
         }
     }
@@ -369,7 +370,8 @@ fun Characters(
                             gameViewModel.checkUserGuess(gameViewModel.getDanishCharacters(row)[i].toString())
                             isGuessed.value = false
                             isClicked.value = true
-                        } else { /* Do nothing! */ }
+                        } else { /* Do nothing! */
+                        }
                     },
                     enabled = true,
                     colors = ButtonDefaults.outlinedButtonColors(backgroundColor = color.value),
@@ -558,17 +560,12 @@ fun TellToSpinWheel() {
 }
 
 @Composable
-fun IsGuessCorrectOrNot(isGuessCorrect: Boolean) {
-    if (isGuessCorrect) {
-        Text(text = "Det er korrekt")
-    } else {
-        Text(text = "Det er ikke korrekt")
-    }
-}
+fun IsGuessCorrectOrNot(uiState: GameUiState) {
+    val point = uiState.assignedPoint   // TODO: Should later be "calculatedPoint" because of number of occurrences
 
-// TODO: Remove the preview once done. Because it does not look good.
-@Preview
-@Composable
-fun GameScreenPreview() {
-    GameScreen(navController = rememberNavController())
+        if (uiState.isGuessedWordCorrect) {
+            Text(text = "Det er korrekt. Du får $point points")
+        } else {
+            Text(text = "Det er ikke korrekt! Du mister et liv")
+        }
 }

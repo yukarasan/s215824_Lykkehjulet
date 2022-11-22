@@ -106,6 +106,8 @@ class GameViewModel :
         _uiState.value.wordLength = wordLength
     }
 
+    // TODO Hide and shows the words.
+
     private fun hideWord() {
 
     }
@@ -166,10 +168,13 @@ class GameViewModel :
 
     // TODO: If user guess is correct, then make the letter in the word no longer hidden.
 
+    // TODO: Make sure that the bankrupt dynamic works.
+
     fun checkUserGuess(guessedCharacter: String) {
         uiState.value.guessedCharacter = guessedCharacter
         _uiState.value.haveUserSpunWheel = false
         _uiState.value.haveUserGuessed = true
+        _uiState.value.numOfTotalGuesses++
 
         if (currentWord.contains(uiState.value.guessedCharacter)) {
             _uiState.value.isGuessedWordCorrect = true

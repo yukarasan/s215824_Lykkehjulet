@@ -21,16 +21,19 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.s215824_lykkehjulet.manropeFamily
+import com.example.s215824_lykkehjulet.model.GameUiState
 import com.example.s215824_lykkehjulet.model.GameViewModel
 import com.example.s215824_lykkehjulet.navigation.Screen
 
 @Composable
 fun GameLostScreen(
     navController: NavController,
-    gameViewModel: GameViewModel = viewModel()
+    gameUiState: GameUiState,
+    gameViewModel: GameViewModel
 ) {
-
-    val gameUiState by gameViewModel.uiState.collectAsState()
+    val word = gameUiState.currentWord
+    val point = gameUiState.point
+    val totalGuesses = gameUiState.numOfTotalGuesses
 
     /**
      * Show the user that they have lost the game.
@@ -52,6 +55,43 @@ fun GameLostScreen(
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(10.dp)
         )
+        Text(
+            text = "Her er dine statistikker: ",
+            fontFamily = manropeFamily,
+            fontWeight = FontWeight.ExtraBold,
+            fontSize = 16.sp,
+            color = Color.Black,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(10.dp)
+        )
+        Text(
+            text = "Point: $point",
+            fontFamily = manropeFamily,
+            fontWeight = FontWeight.Normal,
+            fontSize = 16.sp,
+            color = Color.Black,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(5.dp)
+        )
+        Text(
+            text = "Ordet var: $word",
+            fontFamily = manropeFamily,
+            fontWeight = FontWeight.Normal,
+            fontSize = 16.sp,
+            color = Color.Black,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(5.dp)
+        )
+        Text(
+            text = "Antal forsøg: $totalGuesses",
+            fontFamily = manropeFamily,
+            fontWeight = FontWeight.Normal,
+            fontSize = 16.sp,
+            color = Color.Black,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(5.dp)
+        )
+
         Text(
             text = "Vil du gerne spille igen?",
             fontFamily = manropeFamily,
@@ -77,7 +117,7 @@ fun GameLostScreen(
 }
 
 @Composable
-fun PlayAgainButton(gameViewModel: GameViewModel, navController: NavController) {
+private fun PlayAgainButton(gameViewModel: GameViewModel, navController: NavController) {
     Button(
         onClick = {
             gameViewModel.playAgain()
@@ -100,7 +140,7 @@ fun PlayAgainButton(gameViewModel: GameViewModel, navController: NavController) 
 }
 
 @Composable
-fun GoToMenuButton(gameViewModel: GameViewModel, navController: NavController) {
+private fun GoToMenuButton(gameViewModel: GameViewModel, navController: NavController) {
     Button(
         onClick = {
             gameViewModel.playAgain()
@@ -120,11 +160,4 @@ fun GoToMenuButton(gameViewModel: GameViewModel, navController: NavController) {
             color = Color.White
         )
     }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun GameLostScreenPreview() {
-    GameLostScreen(navController = rememberNavController())
 }
