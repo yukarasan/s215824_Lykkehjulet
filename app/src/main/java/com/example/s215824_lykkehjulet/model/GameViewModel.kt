@@ -174,6 +174,16 @@ class GameViewModel :
         if (currentWord.contains(uiState.value.guessedCharacter)) {
             _uiState.value.isGuessedWordCorrect = true
 
+            /*
+            This for-loop checks for all the char values in currentWord, if they are equal to
+            the guessed character. For each occurrence, number of correct guesses increments.
+             */
+            for (n in _uiState.value.currentWord) {
+                if (n.toString() == uiState.value.guessedCharacter) {
+                    _uiState.value.numOfCorrectGuesses++
+                }
+            }
+
             if (_uiState.value.assignedPoint == 0) {
                 _uiState.value.point = 0
             } else {
@@ -181,6 +191,10 @@ class GameViewModel :
             }
 
         } else {
+            if (_uiState.value.assignedPoint == 0) {
+                _uiState.value.point = 0
+            }
+
             _uiState.value.isGuessedWordCorrect = false
             _uiState.value.lives--
         }

@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -62,6 +63,12 @@ fun GameScreen(
         if (gameUiState.lives == 0) {
             LaunchedEffect(Unit) {
                 navController.navigate(route = Screen.GameLostScreen.route)
+            }
+        }
+
+        if (gameUiState.numOfCorrectGuesses == gameUiState.wordLength) {
+            LaunchedEffect(Unit) {
+                navController.navigate(route = Screen.GameWonScreen.route)
             }
         }
 
@@ -313,6 +320,7 @@ fun Letter(letter: Char) {
     }
 }
 
+@SuppressLint("UnrememberedMutableState")
 @Composable
 fun Characters(
     row: Int,
@@ -325,14 +333,46 @@ fun Characters(
 
     Row {
         for (i in 0 until gameViewModel.getDanishCharacters(row).size) {
+            val isClicked = remember { mutableStateOf(false) }
+
+            val color = if (isClicked.value) remember {
+                mutableStateOf(
+                    Color.LightGray
+                )
+            } else remember {
+                mutableStateOf(
+                    Color.White
+                )
+            }
+
+            /*
+            if (isClicked.value && uiState.isGuessedWordCorrect) remember {
+                color = mutableStateOf(
+                    Color.Green
+                )
+            } else if (isClicked.value && !uiState.isGuessedWordCorrect) remember {
+                color = mutableStateOf(
+                    Color.Red
+                )
+            } else remember {
+                color = mutableStateOf(
+                    Color.White
+                )
+            }
+             */
+
             if (showCharacters) {
                 OutlinedButton(
                     border = BorderStroke(2.dp, Color.Black),
                     onClick = {
-                        gameViewModel.checkUserGuess(gameViewModel.getDanishCharacters(row)[i].toString())
-                        isGuessed.value = false
+                        if (!isClicked.value) {
+                            gameViewModel.checkUserGuess(gameViewModel.getDanishCharacters(row)[i].toString())
+                            isGuessed.value = false
+                            isClicked.value = true
+                        } else { /* Do nothing! */ }
                     },
                     enabled = true,
+                    colors = ButtonDefaults.outlinedButtonColors(backgroundColor = color.value),
                     modifier = Modifier
                         .padding(top = 20.dp, start = 5.dp, end = 5.dp)
                         .size(33.dp)
