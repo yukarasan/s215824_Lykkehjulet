@@ -158,7 +158,6 @@ private fun PlayAgainButton(gameViewModel: GameViewModel, navController: NavCont
         enabled = true,
         modifier = Modifier
             .height(60.dp)
-            .width(135.dp)
     ) {
         Text(
             text = stringResource(R.string.play_again),
