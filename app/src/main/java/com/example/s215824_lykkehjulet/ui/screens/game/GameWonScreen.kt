@@ -1,5 +1,6 @@
 package com.example.s215824_lykkehjulet.ui.screens.game
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
@@ -44,14 +45,14 @@ fun GameWonScreen(
         verticalArrangement = Arrangement.Center,
         modifier = Modifier
             .fillMaxSize()
-            .padding(20.dp)
+            .background(Color(90, 49, 160))
     ) {
         Text(
             text = "Tillykke, du har vundet spillet!",
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
             fontSize = 24.sp,
-            color = Color.Black,
+            color = Color.White,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(10.dp)
         )
@@ -60,7 +61,7 @@ fun GameWonScreen(
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
             fontSize = 16.sp,
-            color = Color.Black,
+            color = Color.White,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(10.dp)
         )
@@ -69,7 +70,7 @@ fun GameWonScreen(
             fontFamily = manropeFamily,
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp,
-            color = Color.Black,
+            color = Color.White,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(5.dp)
         )
@@ -78,7 +79,7 @@ fun GameWonScreen(
             fontFamily = manropeFamily,
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp,
-            color = Color.Black,
+            color = Color.White,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(5.dp)
         )
@@ -87,7 +88,7 @@ fun GameWonScreen(
             fontFamily = manropeFamily,
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp,
-            color = Color.Black,
+            color = Color.White,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(5.dp)
         )
@@ -96,7 +97,7 @@ fun GameWonScreen(
             fontFamily = manropeFamily,
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp,
-            color = Color.Black,
+            color = Color.White,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(5.dp)
         )
@@ -105,7 +106,7 @@ fun GameWonScreen(
             fontFamily = manropeFamily,
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp,
-            color = Color.Black,
+            color = Color.White,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(5.dp)
         )
@@ -114,7 +115,7 @@ fun GameWonScreen(
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
             fontSize = 16.sp,
-            color = Color.Black,
+            color = Color.White,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(10.dp)
         )
@@ -141,7 +142,7 @@ private fun PlayAgainButton(gameViewModel: GameViewModel, navController: NavCont
             navController.navigate(Screen.GameScreen.route)
         },
         shape = RoundedCornerShape(100),
-        colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black),
+        colors = ButtonDefaults.buttonColors(Color(195, 120, 220)),
         enabled = true,
         modifier = Modifier
             .height(40.dp)
@@ -164,7 +165,7 @@ private fun GoToMenuButton(gameViewModel: GameViewModel, navController: NavContr
             navController.navigate(Screen.MenuScreen.route)
         },
         shape = RoundedCornerShape(100),
-        colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black),
+        colors = ButtonDefaults.buttonColors(Color(180, 155, 255)),
         enabled = true,
         modifier = Modifier
             .height(40.dp)
