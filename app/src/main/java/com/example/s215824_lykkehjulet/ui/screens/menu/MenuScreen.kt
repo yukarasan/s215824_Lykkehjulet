@@ -46,7 +46,6 @@ fun MenuScreen(navController: NavController) {
             SeeRulesButton(
                 navController,
                 modifier = Modifier
-                    .width(185.dp)
                     .padding(bottom = 40.dp)
             )
             PlayGameButton(

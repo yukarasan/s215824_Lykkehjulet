@@ -402,12 +402,12 @@ fun Characters(
                     shape = RoundedCornerShape(30),
                     modifier = Modifier
                         .padding(top = 10.dp, start = 5.dp, end = 5.dp)
-                        .size(33.dp)
+                        .size(43.dp)
                 ) {
                     Text(
                         text = gameViewModel.getDanishCharacters(row)[i].toString(),
                         fontFamily = manropeFamily,
-                        fontWeight = FontWeight.Medium,
+                        fontWeight = FontWeight.ExtraBold,
                         fontSize = 13.sp,
                         color = Color.Black,
                         textAlign = TextAlign.Center
@@ -424,12 +424,12 @@ fun Characters(
                     shape = RoundedCornerShape(30),
                     modifier = Modifier
                         .padding(top = 10.dp, start = 5.dp, end = 5.dp)
-                        .size(33.dp)
+                        .size(43.dp)
                 ) {
                     Text(
                         text = gameViewModel.getDanishCharacters(row)[i].toString(),
                         fontFamily = manropeFamily,
-                        fontWeight = FontWeight.Medium,
+                        fontWeight = FontWeight.ExtraBold,
                         fontSize = 13.sp,
                         color = Color.Black,
                         textAlign = TextAlign.Center
