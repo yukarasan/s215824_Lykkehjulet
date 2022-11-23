@@ -10,11 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.s215824_lykkehjulet.R
 import com.example.s215824_lykkehjulet.manropeFamily
 import com.example.s215824_lykkehjulet.navigation.Screen
 import com.example.s215824_lykkehjulet.model.GameUiState
@@ -32,8 +34,6 @@ fun GameWonScreen(
     val point = gameUiState.point
     val totalGuesses = gameUiState.numOfTotalGuesses
 
-    word.lowercase()
-
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -42,7 +42,7 @@ fun GameWonScreen(
             .background(Color(90, 49, 160))
     ) {
         Text(
-            text = "Tillykke, du har vundet spillet!",
+            text = stringResource(R.string.you_won_the_game),
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
             fontSize = 24.sp,
@@ -51,7 +51,7 @@ fun GameWonScreen(
             modifier = Modifier.padding(10.dp)
         )
         Text(
-            text = "Her er dine statistikker: ",
+            text = stringResource(R.string.your_statistics),
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
             fontSize = 16.sp,
@@ -60,7 +60,11 @@ fun GameWonScreen(
             modifier = Modifier.padding(10.dp)
         )
         Text(
-            text = "Point: $point",
+            text = buildString {
+                append(stringResource(R.string.point))
+                append(": ")
+                append(point)
+            },
             fontFamily = manropeFamily,
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp,
@@ -78,7 +82,7 @@ fun GameWonScreen(
             modifier = Modifier.padding(5.dp)
         )
         Text(
-            text = "Kategorien: $category",
+            text = "Ordet var: $word",
             fontFamily = manropeFamily,
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp,
@@ -87,7 +91,7 @@ fun GameWonScreen(
             modifier = Modifier.padding(5.dp)
         )
         Text(
-            text = "Ord: $word",
+            text = "Kategorien: $category",
             fontFamily = manropeFamily,
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp,

@@ -365,7 +365,7 @@ fun Characters(
     gameViewModel: GameViewModel,
     showCharacters: Boolean,
     isGuessed: MutableState<Boolean>,
-    uiState: GameUiState,   // TODO: Maybe remove
+    uiState: GameUiState,
 ) {
     gameViewModel.getDanishCharacters(row)
 
@@ -399,7 +399,7 @@ fun Characters(
             }
              */
 
-            if (showCharacters) {
+            if (showCharacters && !uiState.isBankrupt) {
                 OutlinedButton(
                     border = BorderStroke(2.dp, Color(180, 155, 255)),
                     onClick = {
@@ -627,7 +627,7 @@ fun IsGuessCorrectOrNot(uiState: GameUiState) {
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
             fontSize = 16.sp,
-            color = Color.White,
+            color = Color.Green,
             textAlign = TextAlign.Center
         )
     } else {
@@ -636,7 +636,7 @@ fun IsGuessCorrectOrNot(uiState: GameUiState) {
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
             fontSize = 16.sp,
-            color = Color.White,
+            color = Color.Red,
             textAlign = TextAlign.Center
         )
     }

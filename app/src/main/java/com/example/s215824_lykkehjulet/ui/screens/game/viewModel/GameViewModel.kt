@@ -149,15 +149,14 @@ class GameViewModel :
         }
 
         _uiState.value.haveUserSpunWheel = true
+        _uiState.value.isBankrupt = false
 
         if (_uiState.value.assignedPoint == 0) {
+            // If player goes bankrupt, give the option to spin the wheel again:
+            _uiState.value.isBankrupt = true
             _uiState.value.haveUserSpunWheel = false
         }
     }
-
-    /* TODO: Make sure that the bankrupt dynamic works. The user should not be able to guess.
-        They should only be able to press "Drej hjulet".
-     */
 
     fun checkUserGuess(guessedCharacter: String) {
         uiState.value.guessedCharacter = guessedCharacter
@@ -172,10 +171,9 @@ class GameViewModel :
             // Setting the number of multiplication back to 0 for next round:
             _uiState.value.numOfMultiplication = 0
 
+            // Used to make a list of guessed characters that should be displayed on the word.
             correctGuessedWords = uiState.value.guessedCharacter
             _uiState.value.listOfGuessedCharacters = uiState.value.listOfGuessedCharacters + correctGuessedWords
-
-            Log.d("Guessed words", correctGuessedWords)
 
             /*
             This for-loop checks for all the char values in currentWord, if they are equal to
@@ -190,6 +188,7 @@ class GameViewModel :
                 }
             }
 
+            // Assigning the point
             if (_uiState.value.assignedPoint == 0) {
                 _uiState.value.point = 0
             } else {
@@ -198,25 +197,18 @@ class GameViewModel :
             }
 
         } else {
+            /*
+             * If the word does not contain the guessed letter, and the assigned point is still
+             * 0, we should set the points to 0. This logic is flawed, since you are still able to
+             * guess again. But I've made sure that you can instead click "Drej hjulet" again.
+             * And also, if the word does not contain the guessed letter, user should loose a life.
+             */
             if (_uiState.value.assignedPoint == 0) {
                 _uiState.value.point = 0
             }
 
             _uiState.value.isGuessedWordCorrect = false
             _uiState.value.lives--
-        }
-    }
-
-    // TODO Hide and shows the words.
-    // TODO: If user guess is correct, then make the letter in the word no longer hidden.
-
-    private fun hideWord() {
-
-    }
-
-    private fun showLetter(guessedCharacter: String) {
-        for (i in _uiState.value.currentWord.indices) {
-            guessedCharacter[i]
         }
     }
 

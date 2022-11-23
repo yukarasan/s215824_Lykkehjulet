@@ -10,11 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.s215824_lykkehjulet.R
 import com.example.s215824_lykkehjulet.manropeFamily
 import com.example.s215824_lykkehjulet.navigation.Screen
 import com.example.s215824_lykkehjulet.model.GameUiState
@@ -42,7 +44,7 @@ fun GameLostScreen(
             .background(Color(90, 49, 160))
     ) {
         Text(
-            text = "Du har mistet alle dine liv og spillet er derfor slut.",
+            text = stringResource(R.string.lost_game),
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
             fontSize = 16.sp,
@@ -51,7 +53,7 @@ fun GameLostScreen(
             modifier = Modifier.padding(10.dp)
         )
         Text(
-            text = "Her er dine statistikker: ",
+            text = stringResource(R.string.your_statistics),
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
             fontSize = 16.sp,
@@ -60,7 +62,11 @@ fun GameLostScreen(
             modifier = Modifier.padding(10.dp)
         )
         Text(
-            text = "Point: $point",
+            text = buildString {
+                append(stringResource(R.string.point))
+                append(": ")
+                append(point)
+            },
             fontFamily = manropeFamily,
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp,
@@ -69,7 +75,11 @@ fun GameLostScreen(
             modifier = Modifier.padding(5.dp)
         )
         Text(
-            text = "Ordet var: $word",
+            text = buildString {
+                append(stringResource(R.string.word_was))
+                append(" ")
+                append(word)
+            },
             fontFamily = manropeFamily,
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp,
@@ -78,7 +88,11 @@ fun GameLostScreen(
             modifier = Modifier.padding(5.dp)
         )
         Text(
-            text = "Antal forsøg: $totalGuesses",
+            text = buildString {
+                append(stringResource(R.string.num_of_tries))
+                append(" ")
+                append(totalGuesses)
+            },
             fontFamily = manropeFamily,
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp,
@@ -88,7 +102,7 @@ fun GameLostScreen(
         )
 
         Text(
-            text = "Vil du gerne spille igen?",
+            text = stringResource(R.string.want_to_play_again),
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
             fontSize = 16.sp,
@@ -125,7 +139,7 @@ private fun PlayAgainButton(gameViewModel: GameViewModel, navController: NavCont
             .height(40.dp)
     ) {
         Text(
-            text = "Spil igen",
+            text = stringResource(R.string.play_again),
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
             fontSize = 16.sp,
@@ -148,7 +162,7 @@ private fun GoToMenuButton(gameViewModel: GameViewModel, navController: NavContr
             .height(40.dp)
     ) {
         Text(
-            text = "Menu",
+            text = stringResource(R.string.menu),
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
             fontSize = 16.sp,
