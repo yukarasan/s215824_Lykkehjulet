@@ -24,4 +24,4 @@ List of rules to be implemented:
 * The game should be able to be played again if a player has won or lost their current game  
 
 
-![Screenshot](background.png)
+<img width="265" alt="menu" src="https://user-images.githubusercontent.com/91070526/203601888-86604b20-13c0-4a52-bb3e-953733f3a703.png">
