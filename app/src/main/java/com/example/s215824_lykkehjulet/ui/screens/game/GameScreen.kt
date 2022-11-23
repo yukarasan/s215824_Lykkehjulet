@@ -345,15 +345,16 @@ fun Word(wordLength: Int, uiState: GameUiState) {
 fun Letter(letter: String) {
     Card(
         border = BorderStroke(2.dp, Color.Black),
+        backgroundColor = Color.White,
         modifier = Modifier
             .padding(top = 20.dp, start = 5.dp, end = 5.dp)
-            .size(30.dp)
+            .size(35.dp)
     ) {
         Text(
             text = letter,
             fontFamily = manropeFamily,
             fontWeight = FontWeight.Medium,
-            fontSize = 22.sp,
+            fontSize = 26.sp,
             color = Color.Black,
             textAlign = TextAlign.Center
         )

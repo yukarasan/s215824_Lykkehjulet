@@ -119,7 +119,7 @@ fun GameWonScreen(
         )
         Column(
             modifier = Modifier
-                .padding(20.dp)
+                .padding(start = 50.dp, end = 50.dp)
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),

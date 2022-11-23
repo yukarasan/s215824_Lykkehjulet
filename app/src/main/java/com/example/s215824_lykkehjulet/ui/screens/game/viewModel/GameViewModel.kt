@@ -120,29 +120,6 @@ class GameViewModel : ViewModel() {
         // Creates a random number between 1 and 20, to choose between the different points
         when ((1..20).shuffled().last()) {
             1 -> _uiState.value.assignedPoint = 0
-            2 -> _uiState.value.assignedPoint = 0
-            3 -> _uiState.value.assignedPoint = 100
-            4 -> _uiState.value.assignedPoint = 500
-            5 -> _uiState.value.assignedPoint = 500
-            6 -> _uiState.value.assignedPoint = 500
-            7 -> _uiState.value.assignedPoint = 0
-            8 -> _uiState.value.assignedPoint = 500
-            9 -> _uiState.value.assignedPoint = 0
-            10 -> _uiState.value.assignedPoint = 0
-            11 -> _uiState.value.assignedPoint = 600
-            12 -> _uiState.value.assignedPoint = 0
-            13 -> _uiState.value.assignedPoint = 800
-            14 -> _uiState.value.assignedPoint = 0
-            15 -> _uiState.value.assignedPoint = 1000
-            16 -> _uiState.value.assignedPoint = 0
-            17 -> _uiState.value.assignedPoint = 800
-            18 -> _uiState.value.assignedPoint = 0
-            19 -> _uiState.value.assignedPoint = 1000
-            20 -> _uiState.value.assignedPoint = 1500
-        }
-        /*
-        when ((1..20).shuffled().last()) {
-            1 -> _uiState.value.assignedPoint = 0
             2 -> _uiState.value.assignedPoint = 100
             3 -> _uiState.value.assignedPoint = 100
             4 -> _uiState.value.assignedPoint = 300
@@ -163,7 +140,6 @@ class GameViewModel : ViewModel() {
             19 -> _uiState.value.assignedPoint = 1000
             20 -> _uiState.value.assignedPoint = 1500
         }
-         */
 
         _uiState.value.haveUserSpunWheel = true
         _uiState.value.isBankrupt = false

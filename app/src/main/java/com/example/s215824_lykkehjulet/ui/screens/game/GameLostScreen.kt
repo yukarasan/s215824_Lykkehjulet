@@ -13,9 +13,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.s215824_lykkehjulet.R
 import com.example.s215824_lykkehjulet.manropeFamily
 import com.example.s215824_lykkehjulet.navigation.Screen
@@ -110,9 +112,11 @@ fun GameLostScreen(
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(10.dp)
         )
+
         Column(
+            verticalArrangement = Arrangement.Bottom,
             modifier = Modifier
-                .padding(20.dp)
+                .padding(start = 50.dp, end = 50.dp)
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -169,4 +173,14 @@ private fun GoToMenuButton(gameViewModel: GameViewModel, navController: NavContr
             color = Color.White
         )
     }
+}
+
+@Preview
+@Composable
+fun GameLostScreenPreview() {
+    GameLostScreen(
+        navController = rememberNavController(),
+        gameUiState = GameUiState(),
+        gameViewModel = GameViewModel()
+    )
 }
