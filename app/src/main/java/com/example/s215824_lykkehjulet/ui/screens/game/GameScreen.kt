@@ -221,7 +221,7 @@ fun TopBarDescription(category: String, points: Int, lives: Int) {
             TopBarTextWithString(title = stringResource(id = R.string.category), desc = category)
         }
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            TopBarTextWithNumber(title = stringResource(id = R.string.lives), desc = lives)
+            TopBarTextWithImage(desc = lives)
         }
     }
 }
@@ -255,6 +255,22 @@ fun TopBarTextWithString(title: String, desc: String) {
     )
     Text(
         text = desc,
+        fontFamily = manropeFamily,
+        fontWeight = FontWeight.Light,
+        fontSize = 12.sp,
+        color = Color.White
+    )
+}
+
+@Composable
+fun TopBarTextWithImage(desc: Int) {
+    Image(
+        painter = painterResource(id = R.drawable.heart),
+        contentDescription = "heart",
+        modifier = Modifier.size(16.dp)
+    )
+    Text(
+        text = desc.toString(),
         fontFamily = manropeFamily,
         fontWeight = FontWeight.Light,
         fontSize = 12.sp,
