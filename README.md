@@ -22,3 +22,6 @@ List of rules to be implemented:
   * The game is won when all the letters have been found
   * The game is lost when the player looses all of their lifes before the game is won.
 * The game should be able to be played again if a player has won or lost their current game  
+
+
+![Screenshot](background.png)
