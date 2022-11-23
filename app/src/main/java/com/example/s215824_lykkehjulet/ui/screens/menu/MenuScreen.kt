@@ -11,6 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -36,6 +38,7 @@ fun MenuScreen(navController: NavController) {
             .fillMaxSize()
             .background(Color(90, 49, 160))
     ) {
+        BackgroundImage()
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             GameTitle(
                 title = stringResource(id = R.string.game_title),
@@ -54,6 +57,17 @@ fun MenuScreen(navController: NavController) {
             )
         }
     }
+}
+
+@Composable
+fun BackgroundImage() {
+    val image = painterResource(id = R.drawable.background)
+    Image(
+        painter = image,
+        contentDescription = "",
+        contentScale = ContentScale.Crop,
+        modifier = Modifier.fillMaxSize()
+    )
 }
 
 @Composable

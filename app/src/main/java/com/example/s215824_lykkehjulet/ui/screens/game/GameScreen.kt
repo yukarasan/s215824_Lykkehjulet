@@ -295,6 +295,7 @@ fun Word(wordLength: Int, uiState: GameUiState) {
     var firstRow = 0
     val letter = uiState.currentWord
 
+
     if (wordLength >= 8) {
         firstRow = wordLength
 
@@ -306,20 +307,32 @@ fun Word(wordLength: Int, uiState: GameUiState) {
     Column(modifier = Modifier.padding(bottom = 5.dp)) {
         if (wordLength <= 8) {
             Row {
-                for (i in 1..wordLength) {  // Should later be: for (item in collection)
-                    Letter(letter.get(i - 1))
+                for (i in 1..wordLength) {
+                    if (uiState.listOfGuessedCharacters.contains(letter[i - 1].toString())) {
+                        Letter(letter[i - 1].toString())
+                    } else {
+                        Letter(" ")
+                    }
                 }
             }
         }
         if (wordLength > 8) {
             Row {
-                for (i in 1..firstRow) {  // Should later be: for (item in collection)
-                    Letter(letter.get(i - 1))
+                for (i in 1..firstRow) {
+                    if (uiState.listOfGuessedCharacters.contains(letter[i - 1].toString())) {
+                        Letter(letter[i - 1].toString())
+                    } else {
+                        Letter(" ")
+                    }
                 }
             }
             Row {
-                for (i in 1..wordLength - 8) {  // Should later be: for (item in collection)
-                    Letter(letter.get(8 + (i - 1)))
+                for (i in 1..wordLength - 8) {
+                    if (uiState.listOfGuessedCharacters.contains(letter[i - 1].toString())) {
+                        Letter(letter[i - 1].toString())
+                    } else {
+                        Letter(" ")
+                    }
                 }
             }
         }
@@ -327,7 +340,7 @@ fun Word(wordLength: Int, uiState: GameUiState) {
 }
 
 @Composable
-fun Letter(letter: Char) {
+fun Letter(letter: String) {
     Card(
         border = BorderStroke(2.dp, Color.Black),
         modifier = Modifier

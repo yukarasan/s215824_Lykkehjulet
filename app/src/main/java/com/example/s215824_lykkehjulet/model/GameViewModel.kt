@@ -154,6 +154,10 @@ class GameViewModel :
         }
 
         _uiState.value.haveUserSpunWheel = true
+
+        if (_uiState.value.assignedPoint == 0) {
+            _uiState.value.haveUserSpunWheel = false
+        }
     }
 
     /* TODO: Make sure that the bankrupt dynamic works. The user should not be able to guess.
@@ -166,10 +170,17 @@ class GameViewModel :
         _uiState.value.haveUserGuessed = true
         _uiState.value.numOfTotalGuesses++
 
+        var correctGuessedWords = " "
+
         if (currentWord.contains(uiState.value.guessedCharacter)) {
             _uiState.value.isGuessedWordCorrect = true
             // Setting the number of multiplication back to 0 for next round:
             _uiState.value.numOfMultiplication = 0
+
+            correctGuessedWords = uiState.value.guessedCharacter
+            _uiState.value.listOfGuessedCharacters = uiState.value.listOfGuessedCharacters + correctGuessedWords
+
+            Log.d("Guessed words", correctGuessedWords)
 
             /*
             This for-loop checks for all the char values in currentWord, if they are equal to
@@ -188,7 +199,7 @@ class GameViewModel :
                 _uiState.value.point = 0
             } else {
                 _uiState.value.point = _uiState.value.point +
-                            (uiState.value.assignedPoint * _uiState.value.numOfMultiplication)
+                        (uiState.value.assignedPoint * _uiState.value.numOfMultiplication)
             }
 
         } else {
