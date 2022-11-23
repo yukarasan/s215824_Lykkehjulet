@@ -22,3 +22,20 @@ List of rules to be implemented:
   * The game is won when all the letters have been found
   * The game is lost when the player looses all of their lifes before the game is won.
 * The game should be able to be played again if a player has won or lost their current game  
+
+
+# Menu
+<img width="300" alt="menu" src="https://user-images.githubusercontent.com/91070526/203604183-75a3fd08-1527-4fa2-ae96-6d1c926a0616.png">
+
+# Rules
+<img width="298" alt="rules" src="https://user-images.githubusercontent.com/91070526/203604245-9b37fa6a-6a5d-410e-ab52-0bcbafff00ce.png">
+
+# Game 
+<img width="322" alt="game" src="https://user-images.githubusercontent.com/91070526/203604294-82cffb02-d84c-4831-828f-27b9d8429995.png">
+
+# Won
+<img width="322" alt="won" src="https://user-images.githubusercontent.com/91070526/203604318-91861b98-cc25-4f7b-9a30-5fff41befd57.png">
+
+# Lost
+<img width="320" alt="lost" src="https://user-images.githubusercontent.com/91070526/203604337-ba161238-b73d-41e8-b505-ffe6708de5e9.png">
+
