@@ -328,8 +328,8 @@ fun Word(wordLength: Int, uiState: GameUiState) {
             }
             Row {
                 for (i in 1..wordLength - 8) {
-                    if (uiState.listOfGuessedCharacters.contains(letter[i - 1].toString())) {
-                        Letter(letter[i - 1].toString())
+                    if (uiState.listOfGuessedCharacters.contains(letter[8 + i - 1].toString())) {
+                        Letter(letter[8 + i - 1].toString())
                     } else {
                         Letter(" ")
                     }
