@@ -144,7 +144,9 @@ fun GameScreen(
                 .fillMaxSize()
                 .padding(20.dp)
         ) {
-            if (!gameUiState.haveUserSpunWheel) {
+            if (gameUiState.isBankrupt) {
+                PickedFromWheel(gameUiState.assignedPoint)
+            } else if (!gameUiState.haveUserSpunWheel) {
                 TellToSpinWheel()
             } else {
                 PickedFromWheel(gameUiState.assignedPoint)
