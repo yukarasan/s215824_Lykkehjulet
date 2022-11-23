@@ -34,7 +34,7 @@ fun RulesScreen(navController: NavController) {
         contentPadding = PaddingValues(30.dp),
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(Color(90, 49, 160))
     ) {
         item {
             BackButton(
@@ -130,7 +130,7 @@ private fun BackButton(navController: NavController, modifier: Modifier = Modifi
     Button(
         onClick = { navController.popBackStack() }, // Instead of navigating, we pop the stack
         shape = RoundedCornerShape(100),
-        colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black),
+        colors = ButtonDefaults.buttonColors(backgroundColor = Color(195, 120, 220)),
         modifier = modifier
     ) {
         Image(
@@ -151,7 +151,7 @@ private fun RuleBox(
 ) {
     Card(
         shape = RoundedCornerShape(14.dp),
-        backgroundColor = Color(217, 217, 217),
+        backgroundColor = Color(180, 155, 255),
         elevation = 5.dp,
         modifier = modifier
     ) {
