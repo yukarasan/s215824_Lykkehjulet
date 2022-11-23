@@ -1,11 +1,10 @@
 package com.example.s215824_lykkehjulet.ui.screens.game
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,12 +18,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.s215824_lykkehjulet.R
 import com.example.s215824_lykkehjulet.manropeFamily
 import com.example.s215824_lykkehjulet.model.GameUiState
@@ -54,141 +50,153 @@ fun GameScreen(
     val isGuessed by remember { mutableStateOf(guess) }
 
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 20.dp, start = 20.dp, end = 20.dp, bottom = 5.dp)
-    ) {
-        // When player have no more lives, they'll be navigated to the lost screen.
-        if (gameUiState.lives == 0) {
-            LaunchedEffect(Unit) {
-                navController.navigate(route = Screen.GameLostScreen.route)
-            }
-        }
-
-        if (gameUiState.numOfCorrectGuesses == gameUiState.wordLength) {
-            LaunchedEffect(Unit) {
-                navController.navigate(route = Screen.GameWonScreen.route)
-            }
-        }
-
-        TopBarDescription(
-            category = gameUiState.category,
-            lives = gameUiState.lives,
-            points = gameUiState.point
-        )
-
-        Word(wordLength = gameUiState.wordLength, uiState = gameUiState)
-
-        WheelRotateAnimation(isSpun = wheelSpunState)
-
-        if (!isSpun.value) {
-            // First spin button when the user has not made a spun yet:
-            if (!gameUiState.haveUserSpunWheel) {
-                WheelSpunButton(
-                    turnOrStopMessage = false,  // If false, then ask user to "Drej hjulet"
-                    onClick = {
-                        wheelSpunState = true
-                        isSpun.value = true
-                    },
-                    enabled = true  // Used to enable the button.
-                )
-            } else {
-                if (!isGuessed.value) {
-                    WheelSpunButton(
-                        turnOrStopMessage = false,  // "Drej hjulet"
-                        onClick = {
-                            wheelSpunState = true
-                            isSpun.value = true
-                        },
-                        enabled = false
-                    )
-                } else {
-                    WheelSpunButton(
-                        turnOrStopMessage = false,  // "Drej hjulet"
-                        onClick = {
-                            wheelSpunState = true
-                            isSpun.value = true
-                        },
-                        enabled = false  // Used to enable the button.
-                    )
-                }
-            }
-        } else {
-            // Stop button:
-            WheelSpunButton(
-                turnOrStopMessage = true,   // "Stop"
-                onClick = {
-                    wheelSpunState = false
-                    isSpun.value = false
-                    // Picks a random number from the wheel:
-                    gameViewModel.pickPointFromWheel()
-                    isGuessed.value = true
-                },
-                enabled = false
-            )
-        }
-    }
-
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Bottom,
         modifier = Modifier
             .fillMaxSize()
-            .padding(20.dp)
+            .background(Color(90, 49, 160))
     ) {
-        if (!gameUiState.haveUserSpunWheel) {
-            TellToSpinWheel()
-        } else {
-            PickedFromWheel(gameUiState.assignedPoint)
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 20.dp, start = 20.dp, end = 20.dp, bottom = 5.dp)
+        ) {
+            // When player have no more lives, they'll be navigated to the lost screen.
+            if (gameUiState.lives == 0) {
+                LaunchedEffect(Unit) {
+                    navController.navigate(route = Screen.GameLostScreen.route)
+                }
+            }
+
+            if (gameUiState.numOfCorrectGuesses == gameUiState.wordLength) {
+                LaunchedEffect(Unit) {
+                    navController.navigate(route = Screen.GameWonScreen.route)
+                }
+            }
+
+            TopBarDescription(
+                category = gameUiState.category,
+                lives = gameUiState.lives,
+                points = gameUiState.point
+            )
+
+            Word(wordLength = gameUiState.wordLength, uiState = gameUiState)
         }
 
-        if (gameUiState.haveUserGuessed) {
-            IsGuessCorrectOrNot(uiState = gameUiState)
-            gameUiState.haveUserGuessed = false
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            WheelRotateAnimation(isSpun = wheelSpunState)
+
+            if (!isSpun.value) {
+                // First spin button when the user has not made a spun yet:
+                if (!gameUiState.haveUserSpunWheel) {
+                    WheelSpunButton(
+                        turnOrStopMessage = false,  // If false, then ask user to "Drej hjulet"
+                        onClick = {
+                            wheelSpunState = true
+                            isSpun.value = true
+                        },
+                        enabled = true  // Used to enable the button.
+                    )
+                } else {
+                    if (!isGuessed.value) {
+                        WheelSpunButton(
+                            turnOrStopMessage = false,  // "Drej hjulet"
+                            onClick = {
+                                wheelSpunState = true
+                                isSpun.value = true
+                            },
+                            enabled = false
+                        )
+                    } else {
+                        WheelSpunButton(
+                            turnOrStopMessage = false,  // "Drej hjulet"
+                            onClick = {
+                                wheelSpunState = true
+                                isSpun.value = true
+                            },
+                            enabled = false  // Used to enable the button.
+                        )
+                    }
+                }
+            } else {
+                // Stop button:
+                WheelSpunButton(
+                    turnOrStopMessage = true,   // "Stop"
+                    onClick = {
+                        wheelSpunState = false
+                        isSpun.value = false
+                        // Picks a random number from the wheel:
+                        gameViewModel.pickPointFromWheel()
+                        isGuessed.value = true
+                    },
+                    enabled = false
+                )
+            }
         }
 
-        /*
-         * There is one instance where one of the words use two rows on the screen. Therefore
-         * a scrollable column for the characters are needed.
-         */
-        LazyColumn {
-            item {
-                Characters(
-                    row = 1,
-                    gameViewModel = gameViewModel,
-                    showCharacters = isGuessed.value,
-                    isGuessed = isGuessed,
-                    uiState = gameUiState,
-                )
-                Characters(
-                    row = 2,
-                    gameViewModel = gameViewModel,
-                    showCharacters = isGuessed.value,
-                    isGuessed = isGuessed,
-                    uiState = gameUiState
-                )
-                Characters(
-                    row = 3,
-                    gameViewModel = gameViewModel,
-                    showCharacters = isGuessed.value,
-                    isGuessed = isGuessed,
-                    uiState = gameUiState
-                )
-                Characters(
-                    row = 4,
-                    gameViewModel = gameViewModel,
-                    showCharacters = isGuessed.value,
-                    isGuessed = isGuessed,
-                    uiState = gameUiState
-                )
-                Characters(
-                    row = 5,
-                    gameViewModel = gameViewModel,
-                    showCharacters = isGuessed.value,
-                    isGuessed = isGuessed,
-                    uiState = gameUiState
-                )
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Bottom,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(20.dp)
+        ) {
+            if (!gameUiState.haveUserSpunWheel) {
+                TellToSpinWheel()
+            } else {
+                PickedFromWheel(gameUiState.assignedPoint)
+            }
+
+            if (gameUiState.haveUserGuessed) {
+                IsGuessCorrectOrNot(uiState = gameUiState)
+                gameUiState.haveUserGuessed = false
+            }
+
+            /*
+             * There is one instance where one of the words use two rows on the screen. Therefore
+             * a scrollable column for the characters are needed.
+             */
+            LazyColumn {
+                item {
+                    Characters(
+                        row = 1,
+                        gameViewModel = gameViewModel,
+                        showCharacters = isGuessed.value,
+                        isGuessed = isGuessed,
+                        uiState = gameUiState,
+                    )
+                    Characters(
+                        row = 2,
+                        gameViewModel = gameViewModel,
+                        showCharacters = isGuessed.value,
+                        isGuessed = isGuessed,
+                        uiState = gameUiState
+                    )
+                    Characters(
+                        row = 3,
+                        gameViewModel = gameViewModel,
+                        showCharacters = isGuessed.value,
+                        isGuessed = isGuessed,
+                        uiState = gameUiState
+                    )
+                    Characters(
+                        row = 4,
+                        gameViewModel = gameViewModel,
+                        showCharacters = isGuessed.value,
+                        isGuessed = isGuessed,
+                        uiState = gameUiState
+                    )
+                    Characters(
+                        row = 5,
+                        gameViewModel = gameViewModel,
+                        showCharacters = isGuessed.value,
+                        isGuessed = isGuessed,
+                        uiState = gameUiState
+                    )
+                }
             }
         }
     }
@@ -225,14 +233,14 @@ fun TopBarTextWithNumber(title: String, desc: Int) {
         fontFamily = manropeFamily,
         fontWeight = FontWeight.ExtraBold,
         fontSize = 12.sp,
-        color = Color.Black
+        color = Color.White
     )
     Text(
         text = desc.toString(),
         fontFamily = manropeFamily,
         fontWeight = FontWeight.Light,
         fontSize = 12.sp,
-        color = Color.Black
+        color = Color.White
     )
 }
 
@@ -243,14 +251,14 @@ fun TopBarTextWithString(title: String, desc: String) {
         fontFamily = manropeFamily,
         fontWeight = FontWeight.ExtraBold,
         fontSize = 12.sp,
-        color = Color.Black
+        color = Color.White
     )
     Text(
         text = desc,
         fontFamily = manropeFamily,
         fontWeight = FontWeight.Light,
         fontSize = 12.sp,
-        color = Color.Black
+        color = Color.White
     )
 }
 
@@ -328,7 +336,7 @@ fun Characters(
     gameViewModel: GameViewModel,
     showCharacters: Boolean,
     isGuessed: MutableState<Boolean>,
-    uiState: GameUiState,
+    uiState: GameUiState,   // TODO: Maybe remove
 ) {
     gameViewModel.getDanishCharacters(row)
 
@@ -338,11 +346,11 @@ fun Characters(
 
             val color = if (isClicked.value) remember {
                 mutableStateOf(
-                    Color.LightGray
+                    Color(195, 120, 220)
                 )
             } else remember {
                 mutableStateOf(
-                    Color.White
+                    Color(180, 155, 255)
                 )
             }
 
@@ -364,7 +372,7 @@ fun Characters(
 
             if (showCharacters) {
                 OutlinedButton(
-                    border = BorderStroke(2.dp, Color.Black),
+                    border = BorderStroke(2.dp, Color(180, 155, 255)),
                     onClick = {
                         if (!isClicked.value) {
                             gameViewModel.checkUserGuess(gameViewModel.getDanishCharacters(row)[i].toString())
@@ -375,8 +383,9 @@ fun Characters(
                     },
                     enabled = true,
                     colors = ButtonDefaults.outlinedButtonColors(backgroundColor = color.value),
+                    shape = RoundedCornerShape(30),
                     modifier = Modifier
-                        .padding(top = 20.dp, start = 5.dp, end = 5.dp)
+                        .padding(top = 10.dp, start = 5.dp, end = 5.dp)
                         .size(33.dp)
                 ) {
                     Text(
@@ -390,15 +399,15 @@ fun Characters(
                 }
             } else {
                 OutlinedButton(
-                    border = BorderStroke(2.dp, Color.Black),
                     onClick = {
                         gameViewModel.checkUserGuess(gameViewModel.getDanishCharacters(row)[i].toString())
                         isGuessed.value = false
                     },
                     enabled = false,
                     colors = ButtonDefaults.buttonColors(Color.DarkGray),
+                    shape = RoundedCornerShape(30),
                     modifier = Modifier
-                        .padding(top = 20.dp, start = 5.dp, end = 5.dp)
+                        .padding(top = 10.dp, start = 5.dp, end = 5.dp)
                         .size(33.dp)
                 ) {
                     Text(
@@ -447,21 +456,40 @@ fun WheelRotateAnimation(isSpun: Boolean = false) {
 @Composable
 fun WheelSpunButton(turnOrStopMessage: Boolean, enabled: Boolean, onClick: () -> Unit) {
     if (!turnOrStopMessage) {
-        Button(
-            onClick = onClick,
-            shape = RoundedCornerShape(100),
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black),
-            enabled = enabled,
-            modifier = Modifier
-                .height(40.dp)
-        ) {
-            Text(
-                text = stringResource(id = R.string.spin_wheel),
-                fontFamily = manropeFamily,
-                fontWeight = FontWeight.ExtraBold,
-                fontSize = 16.sp,
-                color = Color.White
-            )
+        if (enabled == true) {
+            Button(
+                onClick = onClick,
+                shape = RoundedCornerShape(100),
+                colors = ButtonDefaults.buttonColors(Color(195, 120, 220)),
+                enabled = enabled,
+                modifier = Modifier
+                    .height(40.dp)
+            ) {
+                Text(
+                    text = stringResource(id = R.string.spin_wheel),
+                    fontFamily = manropeFamily,
+                    fontWeight = FontWeight.ExtraBold,
+                    fontSize = 16.sp,
+                    color = Color.White
+                )
+            }
+        } else {
+            Button(
+                onClick = onClick,
+                shape = RoundedCornerShape(100),
+                colors = ButtonDefaults.buttonColors(Color(195, 120, 220)),
+                enabled = enabled,
+                modifier = Modifier
+                    .height(40.dp)
+            ) {
+                Text(
+                    text = stringResource(id = R.string.spin_wheel),
+                    fontFamily = manropeFamily,
+                    fontWeight = FontWeight.ExtraBold,
+                    fontSize = 16.sp,
+                    color = Color.Black
+                )
+            }
         }
     } else {
         Button(
@@ -488,7 +516,7 @@ fun WheelSpunButton(turnOrStopMessage: Boolean, enabled: Boolean, onClick: () ->
  */
 @Composable
 fun StillWheelImage(rotateDegree: Float = 0f) {
-    val stillWheel = painterResource(id = R.drawable.wheelstill)
+    val stillWheel = painterResource(id = R.drawable.still_wheel)
 
     Image(
         painter = stillWheel,
@@ -496,7 +524,7 @@ fun StillWheelImage(rotateDegree: Float = 0f) {
         modifier = Modifier
             .rotate(rotateDegree)
             .fillMaxWidth()
-            .size(150.dp)
+            .size(250.dp)
     )
 }
 
@@ -506,7 +534,7 @@ fun StillWheelImage(rotateDegree: Float = 0f) {
  */
 @Composable
 fun SpinningWheelImage(rotateDegree: Float = 0f) {
-    val spinningWheel = painterResource(id = R.drawable.wheelspinning)
+    val spinningWheel = painterResource(id = R.drawable.spinning_wheel)
 
     Image(
         painter = spinningWheel,
@@ -514,7 +542,7 @@ fun SpinningWheelImage(rotateDegree: Float = 0f) {
         modifier = Modifier
             .rotate(rotateDegree)
             .fillMaxWidth()
-            .size(150.dp)
+            .size(250.dp)
     )
 }
 
@@ -532,7 +560,7 @@ fun PickedFromWheel(assignedPoint: Int) {
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
             fontSize = 16.sp,
-            color = Color.Black,
+            color = Color.White,
             textAlign = TextAlign.Center
         )
     } else {
@@ -541,7 +569,7 @@ fun PickedFromWheel(assignedPoint: Int) {
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
             fontSize = 16.sp,
-            color = Color.Black,
+            color = Color.White,
             textAlign = TextAlign.Center
         )
     }
@@ -554,18 +582,33 @@ fun TellToSpinWheel() {
         fontFamily = manropeFamily,
         fontWeight = FontWeight.ExtraBold,
         fontSize = 16.sp,
-        color = Color.Black,
+        color = Color.White,
         textAlign = TextAlign.Center
     )
 }
 
+@SuppressLint("SuspiciousIndentation")
 @Composable
 fun IsGuessCorrectOrNot(uiState: GameUiState) {
     val point = uiState.assignedPoint * uiState.numOfMultiplication
 
-        if (uiState.isGuessedWordCorrect) {
-            Text(text = "Det er korrekt. Du får $point points")
-        } else {
-            Text(text = "Det er ikke korrekt! Du mister et liv")
-        }
+    if (uiState.isGuessedWordCorrect) {
+        Text(
+            text = "Det er korrekt. Du får $point point",
+            fontFamily = manropeFamily,
+            fontWeight = FontWeight.ExtraBold,
+            fontSize = 16.sp,
+            color = Color.White,
+            textAlign = TextAlign.Center
+        )
+    } else {
+        Text(
+            text = "Det er ikke korrekt! Du mister et liv",
+            fontFamily = manropeFamily,
+            fontWeight = FontWeight.ExtraBold,
+            fontSize = 16.sp,
+            color = Color.White,
+            textAlign = TextAlign.Center
+        )
+    }
 }

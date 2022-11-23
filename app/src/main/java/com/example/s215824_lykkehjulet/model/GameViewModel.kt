@@ -106,16 +106,6 @@ class GameViewModel :
         _uiState.value.wordLength = wordLength
     }
 
-    // TODO Hide and shows the words.
-
-    private fun hideWord() {
-
-    }
-
-    private fun unHideLetter() {
-
-    }
-
     fun getDanishCharacters(row: Int): List<Char> {
         val characters = Characters()
 
@@ -166,9 +156,9 @@ class GameViewModel :
         _uiState.value.haveUserSpunWheel = true
     }
 
-    // TODO: If user guess is correct, then make the letter in the word no longer hidden.
-
-    // TODO: Make sure that the bankrupt dynamic works.
+    /* TODO: Make sure that the bankrupt dynamic works. The user should not be able to guess.
+        They should only be able to press "Drej hjulet".
+     */
 
     fun checkUserGuess(guessedCharacter: String) {
         uiState.value.guessedCharacter = guessedCharacter
@@ -198,7 +188,7 @@ class GameViewModel :
                 _uiState.value.point = 0
             } else {
                 _uiState.value.point = _uiState.value.point +
-                            (uiState.value.assignedPoint * _uiState.value.numOfMultiplication) // TODO: Multiply with number of occurrences
+                            (uiState.value.assignedPoint * _uiState.value.numOfMultiplication)
             }
 
         } else {
@@ -208,6 +198,19 @@ class GameViewModel :
 
             _uiState.value.isGuessedWordCorrect = false
             _uiState.value.lives--
+        }
+    }
+
+    // TODO Hide and shows the words.
+    // TODO: If user guess is correct, then make the letter in the word no longer hidden.
+
+    private fun hideWord() {
+
+    }
+
+    private fun showLetter(guessedCharacter: String) {
+        for (i in _uiState.value.currentWord.indices) {
+            guessedCharacter[i]
         }
     }
 
