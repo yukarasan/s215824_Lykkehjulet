@@ -561,7 +561,7 @@ fun TellToSpinWheel() {
 
 @Composable
 fun IsGuessCorrectOrNot(uiState: GameUiState) {
-    val point = uiState.assignedPoint   // TODO: Should later be "calculatedPoint" because of number of occurrences
+    val point = uiState.assignedPoint * uiState.numOfMultiplication
 
         if (uiState.isGuessedWordCorrect) {
             Text(text = "Det er korrekt. Du får $point points")

@@ -17,6 +17,7 @@ data class GameUiState(
     var isButtonClicked: Boolean = false,
     var numOfCorrectGuesses: Int = 0,
     var numOfTotalGuesses: Int = 0,
+    var numOfMultiplication: Int = 0,
     val isGameOver: Boolean = false,
 )
 

@@ -178,6 +178,8 @@ class GameViewModel :
 
         if (currentWord.contains(uiState.value.guessedCharacter)) {
             _uiState.value.isGuessedWordCorrect = true
+            // Setting the number of multiplication back to 0 for next round:
+            _uiState.value.numOfMultiplication = 0
 
             /*
             This for-loop checks for all the char values in currentWord, if they are equal to
@@ -185,14 +187,18 @@ class GameViewModel :
              */
             for (n in _uiState.value.currentWord) {
                 if (n.toString() == uiState.value.guessedCharacter) {
+                    // Used to keep track of when the game should end.
                     _uiState.value.numOfCorrectGuesses++
+                    // Used to multiply with the number assigned point.
+                    _uiState.value.numOfMultiplication++
                 }
             }
 
             if (_uiState.value.assignedPoint == 0) {
                 _uiState.value.point = 0
             } else {
-                _uiState.value.point = _uiState.value.point + (uiState.value.assignedPoint) // TODO: Multiply with number of occurrences
+                _uiState.value.point = _uiState.value.point +
+                            (uiState.value.assignedPoint * _uiState.value.numOfMultiplication) // TODO: Multiply with number of occurrences
             }
 
         } else {
