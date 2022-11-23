@@ -4,13 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.ui.platform.LocalContext
-import com.example.s215824_lykkehjulet.view.theme.S215824LykkehjuletTheme
+import com.example.s215824_lykkehjulet.view.theme.Lykkehjulet
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            S215824LykkehjuletTheme {
+            Lykkehjulet {
                 App(context = LocalContext.current)
             }
         }
