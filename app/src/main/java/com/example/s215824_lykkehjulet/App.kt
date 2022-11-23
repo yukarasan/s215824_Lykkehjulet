@@ -21,6 +21,7 @@ fun App(context: Context) {
     val activity = context as Activity
     activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LOCKED
 
+    // Removing the top action bar to give a modern look
     activity.window.setFlags(
         WindowManager.LayoutParams.FLAG_FULLSCREEN,
         WindowManager.LayoutParams.FLAG_FULLSCREEN

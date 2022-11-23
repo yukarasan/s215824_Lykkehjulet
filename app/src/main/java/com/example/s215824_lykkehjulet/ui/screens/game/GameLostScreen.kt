@@ -33,27 +33,36 @@ fun GameLostScreen(
     val word = gameUiState.currentWord
     val point = gameUiState.point
     val totalGuesses = gameUiState.numOfTotalGuesses
+    val category = gameUiState.category
 
     /**
      * Show the user that they have lost the game.
      * Ask them if they would like to play again.
      */
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
         modifier = Modifier
             .fillMaxSize()
             .background(Color(90, 49, 160))
+            .padding(top = 100.dp)
     ) {
         Text(
             text = stringResource(R.string.lost_game),
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
-            fontSize = 16.sp,
+            fontSize = 24.sp,
             color = Color.White,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(10.dp)
         )
+    }
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
         Text(
             text = stringResource(R.string.your_statistics),
             fontFamily = manropeFamily,
@@ -91,6 +100,19 @@ fun GameLostScreen(
         )
         Text(
             text = buildString {
+                append(stringResource(R.string.category_was))
+                append(" ")
+                append(category)
+            },
+            fontFamily = manropeFamily,
+            fontWeight = FontWeight.Normal,
+            fontSize = 16.sp,
+            color = Color.White,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(5.dp)
+        )
+        Text(
+            text = buildString {
                 append(stringResource(R.string.num_of_tries))
                 append(" ")
                 append(totalGuesses)
@@ -107,24 +129,26 @@ fun GameLostScreen(
             text = stringResource(R.string.want_to_play_again),
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
-            fontSize = 16.sp,
+            fontSize = 22.sp,
             color = Color.White,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(10.dp)
         )
+    }
 
-        Column(
-            verticalArrangement = Arrangement.Bottom,
-            modifier = Modifier
-                .padding(start = 50.dp, end = 50.dp)
+    Column(
+        verticalArrangement = Arrangement.Bottom,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .padding(start = 50.dp, end = 50.dp, bottom = 100.dp)
+            .fillMaxSize()
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                PlayAgainButton(gameViewModel, navController)
-                GoToMenuButton(gameViewModel, navController)
-            }
+            PlayAgainButton(gameViewModel, navController)
+            GoToMenuButton(gameViewModel, navController)
         }
     }
 }
@@ -140,13 +164,14 @@ private fun PlayAgainButton(gameViewModel: GameViewModel, navController: NavCont
         colors = ButtonDefaults.buttonColors(Color(195, 120, 220)),
         enabled = true,
         modifier = Modifier
-            .height(40.dp)
+            .height(60.dp)
+            .width(135.dp)
     ) {
         Text(
             text = stringResource(R.string.play_again),
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
-            fontSize = 16.sp,
+            fontSize = 20.sp,
             color = Color.White
         )
     }
@@ -163,13 +188,14 @@ private fun GoToMenuButton(gameViewModel: GameViewModel, navController: NavContr
         colors = ButtonDefaults.buttonColors(Color(180, 155, 255)),
         enabled = true,
         modifier = Modifier
-            .height(40.dp)
+            .height(60.dp)
+            .width(120.dp)
     ) {
         Text(
             text = stringResource(R.string.menu),
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
-            fontSize = 16.sp,
+            fontSize = 20.sp,
             color = Color.White
         )
     }

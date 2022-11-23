@@ -48,7 +48,7 @@
     <string name="clothes">Tøj</string>
     <string name="jobTitles">Dyr</string>
     <string name="cities">Byer</string>
-    <string name="lost_game">Du har mistet alle dine liv og spillet er derfor slut.</string>
+    <string name="lost_game">Du har mistet alle dine liv og spillet er derfor slut </string>
     <string name="your_statistics">Her er dine statistikker: </string>
     <string name="word_was">Ordet var: </string>
     <string name="num_of_tries">Antal forsøg: </string>
@@ -56,5 +56,6 @@
     <string name="play_again">Spil igen</string>
     <string name="menu">Menu</string>
     <string name="you_won_the_game">Tillykke, du har vundet spillet!</string>
+    <string name="category_was">Kategorien var: </string>
 
 </resources>
