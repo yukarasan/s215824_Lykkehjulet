@@ -383,22 +383,6 @@ fun Characters(
                 )
             }
 
-            /*
-            if (isClicked.value && uiState.isGuessedWordCorrect) remember {
-                color = mutableStateOf(
-                    Color.Green
-                )
-            } else if (isClicked.value && !uiState.isGuessedWordCorrect) remember {
-                color = mutableStateOf(
-                    Color.Red
-                )
-            } else remember {
-                color = mutableStateOf(
-                    Color.White
-                )
-            }
-             */
-
             if (showCharacters && !uiState.isBankrupt) {
                 OutlinedButton(
                     border = BorderStroke(2.dp, Color(180, 155, 255)),
@@ -451,7 +435,6 @@ fun Characters(
             }
         }
     }
-    // Log.d("A", gameViewModel.getDanishCharacters(row)[i].toString())
 }
 
 
@@ -541,7 +524,6 @@ fun WheelSpunButton(turnOrStopMessage: Boolean, enabled: Boolean, onClick: () ->
 
 /**
  * This function displays the wheel but is only displayed when the wheel is not rotating.
- * @author Yusuf Kara
  */
 @Composable
 fun StillWheelImage(rotateDegree: Float = 0f) {
@@ -559,7 +541,6 @@ fun StillWheelImage(rotateDegree: Float = 0f) {
 
 /**
  * This function displays the wheel but is only displayed when the wheel is rotating.
- * @author Yusuf Kara
  */
 @Composable
 fun SpinningWheelImage(rotateDegree: Float = 0f) {
@@ -578,8 +559,6 @@ fun SpinningWheelImage(rotateDegree: Float = 0f) {
 /**
  * This function displays two different texts on the same position, depending on what point
  * the player landed on when spinning the wheel.
- *
- * If the player landed on 0, then
  */
 @Composable
 fun PickedFromWheel(assignedPoint: Int) {

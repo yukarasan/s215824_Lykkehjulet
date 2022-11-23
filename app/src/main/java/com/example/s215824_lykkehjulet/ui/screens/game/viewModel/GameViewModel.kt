@@ -10,8 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class GameViewModel :
-    ViewModel() {      // TODO: Change to GameViewModel and move to Screen package.
+class GameViewModel : ViewModel() {
     // UI state
     private val _uiState = MutableStateFlow(GameUiState())
     val uiState: StateFlow<GameUiState> = _uiState.asStateFlow()
