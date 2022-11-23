@@ -8,8 +8,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.s215824_lykkehjulet.ui.screens.game.viewModel.GameViewModel
-import com.example.s215824_lykkehjulet.ui.screens.MenuScreen
-import com.example.s215824_lykkehjulet.ui.RulesScreen
+import com.example.s215824_lykkehjulet.ui.screens.menu.MenuScreen
+import com.example.s215824_lykkehjulet.ui.screens.rules.RulesScreen
 import com.example.s215824_lykkehjulet.ui.screens.game.GameLostScreen
 import com.example.s215824_lykkehjulet.ui.screens.game.GameScreen
 import com.example.s215824_lykkehjulet.ui.screens.game.GameWonScreen

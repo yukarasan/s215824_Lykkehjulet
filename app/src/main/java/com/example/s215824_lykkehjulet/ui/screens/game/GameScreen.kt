@@ -348,7 +348,7 @@ fun Letter(letter: String) {
             .size(30.dp)
     ) {
         Text(
-            text = letter.toString(),
+            text = letter,
             fontFamily = manropeFamily,
             fontWeight = FontWeight.Medium,
             fontSize = 22.sp,
@@ -468,12 +468,12 @@ fun WheelRotateAnimation(isSpun: Boolean = false) {
 @Composable
 fun WheelSpunButton(turnOrStopMessage: Boolean, enabled: Boolean, onClick: () -> Unit) {
     if (!turnOrStopMessage) {
-        if (enabled == true) {
+        if (enabled) {
             Button(
                 onClick = onClick,
                 shape = RoundedCornerShape(100),
                 colors = ButtonDefaults.buttonColors(Color(195, 120, 220)),
-                enabled = enabled,
+                enabled = true,
                 modifier = Modifier
                     .height(40.dp)
             ) {
@@ -490,7 +490,7 @@ fun WheelSpunButton(turnOrStopMessage: Boolean, enabled: Boolean, onClick: () ->
                 onClick = onClick,
                 shape = RoundedCornerShape(100),
                 colors = ButtonDefaults.buttonColors(Color(195, 120, 220)),
-                enabled = enabled,
+                enabled = false,
                 modifier = Modifier
                     .height(40.dp)
             ) {

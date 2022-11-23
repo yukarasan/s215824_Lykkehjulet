@@ -1,4 +1,4 @@
-package com.example.s215824_lykkehjulet.ui.screens
+package com.example.s215824_lykkehjulet.ui.screens.menu
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

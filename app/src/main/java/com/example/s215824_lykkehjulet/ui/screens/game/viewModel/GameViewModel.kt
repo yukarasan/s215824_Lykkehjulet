@@ -1,7 +1,5 @@
 package com.example.s215824_lykkehjulet.ui.screens.game.viewModel
 
-import android.util.Log
-import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import com.example.s215824_lykkehjulet.data.Category
 import com.example.s215824_lykkehjulet.data.Characters
@@ -17,7 +15,7 @@ class GameViewModel : ViewModel() {
 
     // Keeps track of the current word and its length
     private lateinit var currentWord: String
-    var wordLength: Int = 0
+    private var wordLength: Int = 0
 
     // Keeps track of the current category that have been randomly chosen.
     private lateinit var currentCategory: String
@@ -46,9 +44,7 @@ class GameViewModel : ViewModel() {
      */
     private fun pickRandomCategory(): String {
         // Creates a random number between 1 and 5, to choose between the 5 different categories
-        val randomCategory = (1..5).shuffled().last()
-
-        when (randomCategory) {
+        when ((1..5).shuffled().last()) {
             1 -> currentCategory = "Dyr"
             2 -> currentCategory = "Biler"
             3 -> currentCategory = "Job titler"
@@ -122,9 +118,7 @@ class GameViewModel : ViewModel() {
 
     fun pickPointFromWheel() {
         // Creates a random number between 1 and 20, to choose between the different points
-        val randomNumber = (1..20).shuffled().last()
-
-        when (randomNumber) {
+        when ((1..20).shuffled().last()) {
             1 -> _uiState.value.assignedPoint = 0
             2 -> _uiState.value.assignedPoint = 100
             3 -> _uiState.value.assignedPoint = 100
@@ -163,7 +157,7 @@ class GameViewModel : ViewModel() {
         _uiState.value.haveUserGuessed = true
         _uiState.value.numOfTotalGuesses++
 
-        var correctGuessedWords = " "
+        val correctGuessedWords: String
 
         if (currentWord.contains(uiState.value.guessedCharacter)) {
             _uiState.value.isGuessedWordCorrect = true

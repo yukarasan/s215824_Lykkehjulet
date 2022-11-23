@@ -1,4 +1,4 @@
-package com.example.s215824_lykkehjulet.ui
+package com.example.s215824_lykkehjulet.ui.screens.rules
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -155,7 +155,7 @@ private fun RuleBox(
         elevation = 5.dp,
         modifier = modifier
     ) {
-        Column() {
+        Column {
             Text(
                 text = title,
                 color = Color.Black,
