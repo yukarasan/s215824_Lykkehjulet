@@ -25,21 +25,19 @@ List of rules to be implemented:
 
 
 # Menu
-![menu](https://user-images.githubusercontent.com/91070526/203660332-a13614de-e421-4c32-a316-100af46ad1bd.jpg)
-
+<img width="253" alt="menu1" src="https://user-images.githubusercontent.com/91070526/203660791-fa90532b-b621-475e-97cc-8209fa9674eb.png">
 
 # Rules
-![rules](https://user-images.githubusercontent.com/91070526/203660351-7c9b1073-bdb9-48a5-9f06-985ee426bab0.jpg)
-
+<img width="252" alt="rules1" src="https://user-images.githubusercontent.com/91070526/203660794-945febdc-db5c-4bf3-907a-f8486efce532.png">
 
 # Game 
-![game1](https://user-images.githubusercontent.com/91070526/203660372-8e0e4514-6a72-4e8c-bb0a-7ea76971d730.jpg)
-![game2](https://user-images.githubusercontent.com/91070526/203660379-1bb24e4a-18ac-4455-bbc9-f79d92546320.jpg)
+<img width="255" alt="game11" src="https://user-images.githubusercontent.com/91070526/203660806-6bfeea98-9002-4efe-95e3-b9aa92171b31.png">
+<img width="254" alt="game22" src="https://user-images.githubusercontent.com/91070526/203660810-4d754d28-184c-45d0-853b-71362dd375b1.png">
 
 # Won
-![won](https://user-images.githubusercontent.com/91070526/203660411-a5fb6e5e-c301-4236-b97b-4da9e7da274a.jpg)
-
+<img width="251" alt="won1" src="https://user-images.githubusercontent.com/91070526/203660814-16bf4b24-e455-4563-a1ec-118e285e60c2.png">
 
 # Lost
-![lost](https://user-images.githubusercontent.com/91070526/203660423-002e4629-e269-496d-bdad-f1f02b1dc088.jpg)
+<img width="249" alt="lost1" src="https://user-images.githubusercontent.com/91070526/203660820-ef3de645-4efb-49cf-9a81-9b312e992854.png">
+
 
