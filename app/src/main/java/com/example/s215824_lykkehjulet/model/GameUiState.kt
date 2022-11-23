@@ -20,5 +20,3 @@ data class GameUiState(
     var numOfTotalGuesses: Int = 0,
     var numOfMultiplication: Int = 0
 )
-
-// TODO: Change to GameUiState and move to Screen package.

@@ -1,7 +1,5 @@
 package com.example.s215824_lykkehjulet
 
-import android.app.Activity
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent

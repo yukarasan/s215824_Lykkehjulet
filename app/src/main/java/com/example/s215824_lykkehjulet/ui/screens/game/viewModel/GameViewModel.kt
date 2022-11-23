@@ -1,16 +1,14 @@
-package com.example.s215824_lykkehjulet.model
+package com.example.s215824_lykkehjulet.ui.screens.game.viewModel
 
-import android.graphics.drawable.Animatable
 import android.util.Log
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import com.example.s215824_lykkehjulet.data.Category
 import com.example.s215824_lykkehjulet.data.Characters
+import com.example.s215824_lykkehjulet.model.GameUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import java.util.Random
-import kotlin.random.Random.Default.nextInt
 
 class GameViewModel :
     ViewModel() {      // TODO: Change to GameViewModel and move to Screen package.
@@ -64,9 +62,6 @@ class GameViewModel :
 
     private fun pickRandomWordFromCategory(): String {
         val category = Category()
-
-        // TODO: Once the player has won, make sure that the player wont get the same word from category.
-        // if (category.animals().isEmpty())
 
         if (currentCategory == "Dyr") {
             // Get word from animals

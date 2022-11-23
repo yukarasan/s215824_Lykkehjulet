@@ -23,9 +23,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.s215824_lykkehjulet.R
 import com.example.s215824_lykkehjulet.manropeFamily
-import com.example.s215824_lykkehjulet.model.GameUiState
-import com.example.s215824_lykkehjulet.model.GameViewModel
 import com.example.s215824_lykkehjulet.navigation.Screen
+import com.example.s215824_lykkehjulet.model.GameUiState
+import com.example.s215824_lykkehjulet.ui.screens.game.viewModel.GameViewModel
 
 @SuppressLint("UnrememberedMutableState")
 @Composable

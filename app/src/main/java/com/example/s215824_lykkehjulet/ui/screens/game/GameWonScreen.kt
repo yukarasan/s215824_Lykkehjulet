@@ -7,24 +7,18 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.toLowerCase
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.s215824_lykkehjulet.manropeFamily
-import com.example.s215824_lykkehjulet.model.GameUiState
-import com.example.s215824_lykkehjulet.model.GameViewModel
 import com.example.s215824_lykkehjulet.navigation.Screen
+import com.example.s215824_lykkehjulet.model.GameUiState
+import com.example.s215824_lykkehjulet.ui.screens.game.viewModel.GameViewModel
 
 @Composable
 fun GameWonScreen(

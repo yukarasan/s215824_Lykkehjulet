@@ -4,13 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.pm.ActivityInfo
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.s215824_lykkehjulet.model.GameViewModel
 import com.example.s215824_lykkehjulet.navigation.SetupNavGraph
 
 @Composable

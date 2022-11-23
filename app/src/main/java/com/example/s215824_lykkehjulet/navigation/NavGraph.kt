@@ -7,8 +7,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.s215824_lykkehjulet.model.GameUiState
-import com.example.s215824_lykkehjulet.model.GameViewModel
+import com.example.s215824_lykkehjulet.ui.screens.game.viewModel.GameViewModel
 import com.example.s215824_lykkehjulet.ui.screens.MenuScreen
 import com.example.s215824_lykkehjulet.ui.RulesScreen
 import com.example.s215824_lykkehjulet.ui.screens.game.GameLostScreen
@@ -52,5 +51,3 @@ fun SetupNavGraph(
         }
     }
 }
-
-// TODO: Maybe look at how you can tranfer states the correct way using navigation and not place the ViewModel here.
