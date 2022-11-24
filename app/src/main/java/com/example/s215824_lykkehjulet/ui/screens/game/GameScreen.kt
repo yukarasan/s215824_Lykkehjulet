@@ -1,6 +1,8 @@
 package com.example.s215824_lykkehjulet.ui.screens.game
 
 import android.annotation.SuppressLint
+import android.os.Handler
+import android.os.Looper
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -28,6 +30,7 @@ import com.example.s215824_lykkehjulet.manropeFamily
 import com.example.s215824_lykkehjulet.navigation.Screen
 import com.example.s215824_lykkehjulet.model.GameUiState
 import com.example.s215824_lykkehjulet.ui.screens.game.viewModel.GameViewModel
+import kotlinx.coroutines.delay
 
 @SuppressLint("UnrememberedMutableState")
 @Composable
@@ -65,12 +68,14 @@ fun GameScreen(
             // When player have no more lives, they'll be navigated to the lost screen.
             if (gameUiState.lives == 0) {
                 LaunchedEffect(Unit) {
+                    delay(1700) // Timer with value in milliseconds
                     navController.navigate(route = Screen.GameLostScreen.route)
                 }
             }
 
             if (gameUiState.numOfCorrectGuesses == gameUiState.wordLength) {
                 LaunchedEffect(Unit) {
+                    delay(1700) // Timer with value in milliseconds
                     navController.navigate(route = Screen.GameWonScreen.route)
                 }
             }
