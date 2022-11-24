@@ -18,9 +18,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.s215824_lykkehjulet.R
 import com.example.s215824_lykkehjulet.manropeFamily
 import com.example.s215824_lykkehjulet.navigation.Screen
@@ -144,17 +146,17 @@ fun GameScreen(
                 .fillMaxSize()
                 .padding(20.dp)
         ) {
+            if (gameUiState.haveUserGuessed) {
+                IsGuessCorrectOrNot(uiState = gameUiState)
+                gameUiState.haveUserGuessed = false
+            }
+
             if (gameUiState.isBankrupt) {
                 PickedFromWheel(gameUiState.assignedPoint)
             } else if (!gameUiState.haveUserSpunWheel) {
                 TellToSpinWheel()
             } else {
                 PickedFromWheel(gameUiState.assignedPoint)
-            }
-
-            if (gameUiState.haveUserGuessed) {
-                IsGuessCorrectOrNot(uiState = gameUiState)
-                gameUiState.haveUserGuessed = false
             }
 
             /*
@@ -234,14 +236,14 @@ fun TopBarTextWithNumber(title: String, desc: Int) {
         text = title,
         fontFamily = manropeFamily,
         fontWeight = FontWeight.ExtraBold,
-        fontSize = 12.sp,
+        fontSize = 16.sp,
         color = Color.White
     )
     Text(
         text = desc.toString(),
         fontFamily = manropeFamily,
-        fontWeight = FontWeight.Light,
-        fontSize = 12.sp,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
         color = Color.White
     )
 }
@@ -252,14 +254,14 @@ fun TopBarTextWithString(title: String, desc: String) {
         text = title,
         fontFamily = manropeFamily,
         fontWeight = FontWeight.ExtraBold,
-        fontSize = 12.sp,
+        fontSize = 16.sp,
         color = Color.White
     )
     Text(
         text = desc,
         fontFamily = manropeFamily,
-        fontWeight = FontWeight.Light,
-        fontSize = 12.sp,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
         color = Color.White
     )
 }
@@ -269,13 +271,13 @@ fun TopBarTextWithImage(desc: Int) {
     Image(
         painter = painterResource(id = R.drawable.heart),
         contentDescription = "heart",
-        modifier = Modifier.size(16.dp)
+        modifier = Modifier.size(20.dp)
     )
     Text(
         text = desc.toString(),
         fontFamily = manropeFamily,
-        fontWeight = FontWeight.Light,
-        fontSize = 12.sp,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
         color = Color.White
     )
 }
@@ -478,7 +480,7 @@ fun WheelSpunButton(turnOrStopMessage: Boolean, enabled: Boolean, onClick: () ->
                 colors = ButtonDefaults.buttonColors(Color(195, 120, 220)),
                 enabled = true,
                 modifier = Modifier
-                    .height(40.dp)
+                    .height(45.dp)
             ) {
                 Text(
                     text = stringResource(id = R.string.spin_wheel),
@@ -495,7 +497,7 @@ fun WheelSpunButton(turnOrStopMessage: Boolean, enabled: Boolean, onClick: () ->
                 colors = ButtonDefaults.buttonColors(Color(195, 120, 220)),
                 enabled = false,
                 modifier = Modifier
-                    .height(40.dp)
+                    .height(45.dp)
             ) {
                 Text(
                     text = stringResource(id = R.string.spin_wheel),
@@ -512,7 +514,8 @@ fun WheelSpunButton(turnOrStopMessage: Boolean, enabled: Boolean, onClick: () ->
             shape = RoundedCornerShape(100),
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red),
             modifier = Modifier
-                .height(40.dp)
+                .height(45.dp)
+                .width(130.dp)
         ) {
             Text(
                 text = stringResource(id = R.string.stop_wheel),
@@ -622,4 +625,14 @@ fun IsGuessCorrectOrNot(uiState: GameUiState) {
             textAlign = TextAlign.Center
         )
     }
+}
+
+@Preview
+@Composable
+fun GameScreenPreview() {
+    GameScreen(
+        navController = rememberNavController(),
+        gameUiState = GameUiState(),
+        gameViewModel = GameViewModel()
+    )
 }
