@@ -43,13 +43,15 @@ class GameViewModel : ViewModel() {
      * In the future, this would need to be done differently.
      */
     private fun pickRandomCategory(): String {
-        // Creates a random number between 1 and 5, to choose between the 5 different categories
-        when ((1..5).shuffled().last()) {
+        // Creates a random number between 1 and 7, to choose between the 7 different categories
+        when ((1..7).shuffled().last()) {
             1 -> currentCategory = "Dyr"
             2 -> currentCategory = "Biler"
             3 -> currentCategory = "Job titler"
             4 -> currentCategory = "Tøj"
-            5 -> currentCategory = "Byer"
+            5 -> currentCategory = "Danske byer"
+            6 -> currentCategory = "Lande"
+            7 -> currentCategory = "Verdens byer"
         }
 
         return currentCategory
@@ -78,11 +80,21 @@ class GameViewModel : ViewModel() {
             currentWord = category.clothes().shuffled().last()
             // Remove word from category
             category.clothes().remove(currentWord)
-        } else if (currentCategory == "Byer") {
+        } else if (currentCategory == "Danske byer") {
             // Get word from cities
             currentWord = category.cities().shuffled().last()
             // Remove word from category
             category.cities().remove(currentWord)
+        } else if (currentCategory == "Verdens lande") {
+            // Get word from countries
+            currentWord = category.countries().shuffled().last()
+            // Remove word from category
+            category.countries().remove(currentWord)
+        } else if (currentCategory == "Verdens byer") {
+            // Get word from world cities
+            currentWord = category.worldCities().shuffled().last()
+            // Remove word from category
+            category.worldCities().remove(currentWord)
         }
         return currentWord
     }

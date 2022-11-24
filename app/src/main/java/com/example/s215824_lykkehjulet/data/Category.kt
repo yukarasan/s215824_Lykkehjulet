@@ -88,11 +88,7 @@ class Category {
             "BALLERUP",
             "LYNGBY",
             "KØBENHAVN",
-            "ØLSTYKKE",
-            "SLANGERUP",
             "HILLERØD",
-            "FARUM",
-            "BIRKERØD",
             "HELSINGØR",
             "ROSKILDE",
             "RINGSTED",
@@ -107,6 +103,64 @@ class Category {
             "ESBJERG",
             "RANDERS",
             "AALBORG"
+        )
+    }
+
+    fun countries(): MutableList<String> {
+        return mutableListOf(
+            "DANMARK",
+            "TYRKIET",
+            "MADAGASCAR",
+            "SYDAFRIKA",
+            "ZIMBABWE",
+            "INDIEN",
+            "KINA",
+            "JAPAN",
+            "INDONESIEN",
+            "AUSTRALIEN",
+            "USA",
+            "RUSLAND",
+            "CANADA",
+            "KAZAKHSTAN",
+            "ISLAND",
+            "STORBRITANNIEN",
+            "NORGE",
+            "SVERIGE",
+            "BRASILIEN",
+            "ARGENTINA",
+            "MEXICO",
+            "MAROKKO",
+            "EGYPTEN",
+            "KURDISTAN"
+        )
+    }
+
+    fun worldCities(): MutableList<String> {
+        return mutableListOf(
+            "PARIS",
+            "MADRID",
+            "LISSABON",
+            "LONDON",
+            "AMSTERDAM",
+            "BERLIN",
+            "ISTANBUL",
+            "TOKYO",
+            "JAKARTA",
+            "SYDNEY",
+            "KAIRO",
+            "MOSKVA",
+            "MIAMI",
+            "REYKJAVIK",
+            "OSLO",
+            "STOCKHOLM",
+            "ANKARA",
+            "BAGDAD",
+            "DOHA",
+            "DUBAI",
+            "KABUL",
+            "SHANGHAI",
+            "SHENZHEN",
+            "SEOUL"
         )
     }
 }
