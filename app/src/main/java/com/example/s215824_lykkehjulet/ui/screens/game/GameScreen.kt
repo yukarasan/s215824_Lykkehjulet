@@ -68,14 +68,14 @@ fun GameScreen(
             // When player have no more lives, they'll be navigated to the lost screen.
             if (gameUiState.lives == 0) {
                 LaunchedEffect(Unit) {
-                    delay(1700) // Timer with value in milliseconds
+                    delay(1000) // Timer with value in milliseconds
                     navController.navigate(route = Screen.GameLostScreen.route)
                 }
             }
 
             if (gameUiState.numOfCorrectGuesses == gameUiState.wordLength) {
                 LaunchedEffect(Unit) {
-                    delay(1700) // Timer with value in milliseconds
+                    delay(1000) // Timer with value in milliseconds
                     navController.navigate(route = Screen.GameWonScreen.route)
                 }
             }

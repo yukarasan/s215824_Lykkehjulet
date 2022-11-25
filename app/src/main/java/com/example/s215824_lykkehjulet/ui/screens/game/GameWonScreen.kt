@@ -150,8 +150,8 @@ fun GameWonScreen(
 private fun PlayAgainButton(gameViewModel: GameViewModel, navController: NavController) {
     Button(
         onClick = {
-            gameViewModel.playAgain()
             navController.navigate(Screen.GameScreen.route)
+            gameViewModel.playAgain()
         },
         shape = RoundedCornerShape(100),
         colors = ButtonDefaults.buttonColors(Color(195, 120, 220)),
@@ -173,8 +173,8 @@ private fun PlayAgainButton(gameViewModel: GameViewModel, navController: NavCont
 private fun GoToMenuButton(gameViewModel: GameViewModel, navController: NavController) {
     Button(
         onClick = {
-            gameViewModel.playAgain()
             navController.navigate(Screen.MenuScreen.route)
+            gameViewModel.playAgain()
         },
         shape = RoundedCornerShape(100),
         colors = ButtonDefaults.buttonColors(Color(180, 155, 255)),

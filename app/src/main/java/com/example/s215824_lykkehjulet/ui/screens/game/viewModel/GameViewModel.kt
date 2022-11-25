@@ -111,7 +111,7 @@ class GameViewModel : ViewModel() {
     fun getDanishCharacters(row: Int): List<Char> {
         val characters = Characters()
 
-        // Creating sub lists for each row:
+        // Creating sub lists for each row to create the rows of clickable characters
         val firstRow = characters.loadDanishCharacters().subList(0, 7)
         val secondRow = characters.loadDanishCharacters().subList(7, 14)
         val thirdRow = characters.loadDanishCharacters().subList(14, 21)
@@ -199,9 +199,7 @@ class GameViewModel : ViewModel() {
             // Assigning the point
             _uiState.value.point = _uiState.value.point +
                     (uiState.value.assignedPoint * _uiState.value.numOfMultiplication)
-
         } else {
-
             _uiState.value.isGuessedWordCorrect = false
             _uiState.value.lives--
         }
