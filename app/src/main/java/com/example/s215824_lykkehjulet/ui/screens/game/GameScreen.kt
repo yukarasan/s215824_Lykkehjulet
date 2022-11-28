@@ -1,8 +1,6 @@
 package com.example.s215824_lykkehjulet.ui.screens.game
 
 import android.annotation.SuppressLint
-import android.os.Handler
-import android.os.Looper
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -27,9 +25,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.s215824_lykkehjulet.R
 import com.example.s215824_lykkehjulet.manropeFamily
-import com.example.s215824_lykkehjulet.navigation.Screen
-import com.example.s215824_lykkehjulet.model.GameUiState
-import com.example.s215824_lykkehjulet.ui.screens.game.viewModel.GameViewModel
+import com.example.s215824_lykkehjulet.ui.navigation.Screen
 import kotlinx.coroutines.delay
 
 @SuppressLint("UnrememberedMutableState")
@@ -39,7 +35,6 @@ fun GameScreen(
     gameUiState: GameUiState,
     gameViewModel: GameViewModel
 ) {
-
     /**
      * I could not make the wheel spin work without declaring the states here.
      * Therefore I've decided, even though it is not best practice, to keep them here.
@@ -68,15 +63,30 @@ fun GameScreen(
             // When player have no more lives, they'll be navigated to the lost screen.
             if (gameUiState.lives == 0) {
                 LaunchedEffect(Unit) {
-                    delay(1000) // Timer with value in milliseconds
-                    navController.navigate(route = Screen.GameLostScreen.route)
+                    delay(600) // Timer with value in milliseconds
+                    navController.navigate(
+                        route = Screen.GameLostScreen.passArguments(
+                            point = gameUiState.point,
+                            word = gameUiState.currentWord,
+                            category = gameUiState.category,
+                            attempts = gameUiState.numOfTotalGuesses
+                        )
+                    )
                 }
             }
 
             if (gameUiState.numOfCorrectGuesses == gameUiState.wordLength) {
                 LaunchedEffect(Unit) {
-                    delay(1000) // Timer with value in milliseconds
-                    navController.navigate(route = Screen.GameWonScreen.route)
+                    delay(600) // Timer with value in milliseconds
+                    navController.navigate(
+                        route = Screen.GameWonScreen.passArguments(
+                            point = gameUiState.point,
+                            lives = gameUiState.lives,
+                            word = gameUiState.currentWord,
+                            category = gameUiState.category,
+                            attempts = gameUiState.numOfTotalGuesses
+                        )
+                    )
                 }
             }
 
@@ -166,7 +176,8 @@ fun GameScreen(
 
             /*
              * There is one instance where one of the words use two rows on the screen. Therefore
-             * a scrollable column for the characters are needed.
+             * a scrollable column for the characters are needed since some phones are not very
+             * tall.
              */
             LazyColumn {
                 item {
@@ -209,12 +220,6 @@ fun GameScreen(
             }
         }
     }
-
-    /**
-     * PlayAgainButton -- Once the game is over, a play again button should appear asking the
-     * user if they would like to play again.
-     * Then use the navController to navigate back to the MenuScreen.
-     */
 }
 
 @Composable
@@ -297,7 +302,6 @@ fun TopBarTextWithImage(desc: Int) {
  * Since the variable firstRow always needs to be reset for each round, I believe it is fine
  * to have it here instead of in the ViewModel. This also keeps the ViewModel and UiState more
  * general which is easier to understand.
- * @author Yusuf Kara
  */
 @Composable
 fun Word(wordLength: Int, uiState: GameUiState) {
@@ -325,6 +329,7 @@ fun Word(wordLength: Int, uiState: GameUiState) {
                 }
             }
         }
+
         if (wordLength > 8) {
             Row {
                 for (i in 1..firstRow) {
@@ -335,6 +340,7 @@ fun Word(wordLength: Int, uiState: GameUiState) {
                     }
                 }
             }
+
             Row {
                 for (i in 1..wordLength - 8) {
                     if (uiState.listOfGuessedCharacters.contains(letter[8 + i - 1].toString())) {
@@ -401,7 +407,8 @@ fun Characters(
                             gameViewModel.checkUserGuess(gameViewModel.getDanishCharacters(row)[i].toString())
                             isGuessed.value = false
                             isClicked.value = true
-                        } else { /* Do nothing! */
+                        } else {
+                            /* Do nothing! */
                         }
                     },
                     enabled = true,

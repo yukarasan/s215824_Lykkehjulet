@@ -20,22 +20,18 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.s215824_lykkehjulet.R
 import com.example.s215824_lykkehjulet.manropeFamily
-import com.example.s215824_lykkehjulet.navigation.Screen
-import com.example.s215824_lykkehjulet.model.GameUiState
-import com.example.s215824_lykkehjulet.ui.screens.game.viewModel.GameViewModel
+import com.example.s215824_lykkehjulet.ui.navigation.Screen
 
 @Composable
 fun GameWonScreen(
     navController: NavController,
-    gameUiState: GameUiState,
-    gameViewModel: GameViewModel
+    gameViewModel: GameViewModel,
+    point: Int,
+    lives: Int,
+    word: String,
+    category: String,
+    attempts: Int
 ) {
-    val category = gameUiState.category
-    val word = gameUiState.currentWord
-    val lives = gameUiState.lives
-    val point = gameUiState.point
-    val totalGuesses = gameUiState.numOfTotalGuesses
-
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -109,7 +105,7 @@ fun GameWonScreen(
             modifier = Modifier.padding(5.dp)
         )
         Text(
-            text = "Antal forsøg: $totalGuesses",
+            text = "Antal forsøg: $attempts",
             fontFamily = manropeFamily,
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp,
@@ -191,14 +187,4 @@ private fun GoToMenuButton(gameViewModel: GameViewModel, navController: NavContr
             color = Color.White
         )
     }
-}
-
-@Preview
-@Composable
-fun GameWonScreenPreview() {
-    GameWonScreen(
-        navController = rememberNavController(),
-        gameUiState = GameUiState(),
-        gameViewModel = GameViewModel()
-    )
 }

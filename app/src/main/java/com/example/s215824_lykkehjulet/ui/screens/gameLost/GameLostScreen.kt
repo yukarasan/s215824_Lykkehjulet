@@ -13,33 +13,26 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.s215824_lykkehjulet.R
 import com.example.s215824_lykkehjulet.manropeFamily
-import com.example.s215824_lykkehjulet.navigation.Screen
-import com.example.s215824_lykkehjulet.model.GameUiState
-import com.example.s215824_lykkehjulet.ui.screens.game.viewModel.GameViewModel
+import com.example.s215824_lykkehjulet.ui.navigation.Screen
 
 @Composable
 fun GameLostScreen(
     navController: NavController,
-    gameUiState: GameUiState,
-    gameViewModel: GameViewModel
+    gameViewModel: GameViewModel,
+    point: Int,
+    word: String,
+    category: String,
+    attempts: Int
 ) {
-    val word = gameUiState.currentWord
-    val point = gameUiState.point
-    val totalGuesses = gameUiState.numOfTotalGuesses
-    val category = gameUiState.category
-
     /**
      * Show the user that they have lost the game.
      * Ask them if they would like to play again.
      */
-
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -115,7 +108,7 @@ fun GameLostScreen(
             text = buildString {
                 append(stringResource(R.string.num_of_tries))
                 append(" ")
-                append(totalGuesses)
+                append(attempts)
             },
             fontFamily = manropeFamily,
             fontWeight = FontWeight.Normal,
@@ -198,14 +191,4 @@ private fun GoToMenuButton(gameViewModel: GameViewModel, navController: NavContr
             color = Color.White
         )
     }
-}
-
-@Preview
-@Composable
-fun GameLostScreenPreview() {
-    GameLostScreen(
-        navController = rememberNavController(),
-        gameUiState = GameUiState(),
-        gameViewModel = GameViewModel()
-    )
 }

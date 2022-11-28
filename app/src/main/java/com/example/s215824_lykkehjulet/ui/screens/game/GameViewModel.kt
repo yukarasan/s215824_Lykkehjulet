@@ -1,9 +1,8 @@
-package com.example.s215824_lykkehjulet.ui.screens.game.viewModel
+package com.example.s215824_lykkehjulet.ui.screens.game
 
 import androidx.lifecycle.ViewModel
 import com.example.s215824_lykkehjulet.data.Category
 import com.example.s215824_lykkehjulet.data.Characters
-import com.example.s215824_lykkehjulet.model.GameUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -19,6 +18,12 @@ class GameViewModel : ViewModel() {
 
     // Keeps track of the current category that have been randomly chosen.
     private lateinit var currentCategory: String
+
+    /*
+     * Keeps track of how many correct guessed there have been, and thereby which letters to
+     * display on the screen
+     */
+    private lateinit var correctGuessedCharacter: String
 
     init {
         resetGame()
@@ -36,6 +41,10 @@ class GameViewModel : ViewModel() {
             lives = 5
         )
         setCurrentWordAndFindLength()
+    }
+
+    fun playAgain() {
+        resetGame()
     }
 
     /*
@@ -96,6 +105,7 @@ class GameViewModel : ViewModel() {
             // Remove word from category
             category.worldCities().remove(currentWord)
         }
+
         return currentWord
     }
 
@@ -172,16 +182,15 @@ class GameViewModel : ViewModel() {
         _uiState.value.haveUserGuessed = true
         _uiState.value.numOfTotalGuesses++
 
-        val correctGuessedWords: String
-
         if (currentWord.contains(uiState.value.guessedCharacter)) {
             _uiState.value.isGuessedWordCorrect = true
             // Setting the number of multiplication back to 0 for next round:
             _uiState.value.numOfMultiplication = 0
 
+            correctGuessedCharacter = uiState.value.guessedCharacter
+
             // Used to make a list of guessed characters that should be displayed on the word.
-            correctGuessedWords = uiState.value.guessedCharacter
-            _uiState.value.listOfGuessedCharacters = uiState.value.listOfGuessedCharacters + correctGuessedWords
+            _uiState.value.listOfGuessedCharacters = uiState.value.listOfGuessedCharacters + correctGuessedCharacter
 
             /*
             This for-loop checks for all the char values in currentWord, if they are equal to
@@ -203,9 +212,5 @@ class GameViewModel : ViewModel() {
             _uiState.value.isGuessedWordCorrect = false
             _uiState.value.lives--
         }
-    }
-
-    fun playAgain() {
-        resetGame()
     }
 }

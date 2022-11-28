@@ -5,11 +5,12 @@ import android.content.Context
 import android.content.pm.ActivityInfo
 import android.view.Window
 import android.view.WindowManager
+import android.widget.Toolbar
 import androidx.compose.runtime.Composable
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.s215824_lykkehjulet.navigation.SetupNavGraph
+import com.example.s215824_lykkehjulet.ui.navigation.SetupNavGraph
 
 @Composable
 fun App(context: Context) {

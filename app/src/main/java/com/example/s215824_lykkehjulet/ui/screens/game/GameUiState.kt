@@ -1,4 +1,4 @@
-package com.example.s215824_lykkehjulet.model
+package com.example.s215824_lykkehjulet.ui.screens.game
 
 /**
  * Data class that represents the game UI state

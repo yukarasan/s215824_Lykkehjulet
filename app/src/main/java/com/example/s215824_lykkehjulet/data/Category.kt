@@ -1,5 +1,8 @@
 package com.example.s215824_lykkehjulet.data
 
+/**
+ * A dummy data class that stores 7 different categories. Each category have a list of words.
+ */
 class Category {
     fun animals(): MutableList<String> {
         return mutableListOf(

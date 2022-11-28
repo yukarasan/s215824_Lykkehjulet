@@ -1,8 +1,9 @@
 package com.example.s215824_lykkehjulet.data
 
 /**
- * For future development, a different alphabet can be added in another function.
- * For now, I've only added the danish and english alphabet.
+ * This class contains the different alphabets that a player might want to choose between.
+ * For now, I've only added the Danish and English alphabet, but in future development, a
+ * different alphabet can be added simply in another function.
  */
 class Characters {
     fun loadDanishCharacters(): List<Char> {

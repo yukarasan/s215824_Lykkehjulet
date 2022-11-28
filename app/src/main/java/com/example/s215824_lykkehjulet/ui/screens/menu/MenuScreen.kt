@@ -22,7 +22,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.s215824_lykkehjulet.R
 import com.example.s215824_lykkehjulet.manropeFamily
-import com.example.s215824_lykkehjulet.navigation.Screen
+import com.example.s215824_lykkehjulet.ui.navigation.Screen
 
 /**
  * This screen is stateless. It only uses the navController.
