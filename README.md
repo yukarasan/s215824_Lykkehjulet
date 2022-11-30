@@ -9,7 +9,7 @@ And then modified to fulfill the requirements posed by the assignment.
 List of rules to be implemented: 
 * The game is for one player
 * The player start with 0 in their bank
-* When the game starts, a word is randamly chosen from predefined categories.
+* When the game starts, a word is randomly chosen from a list of predefined categories.
   * The word and category is displayed on the screen
     * The word is initially hidden
 * In the first round, the wheel is "spun" by tapping a button. Here a player can land on: 
