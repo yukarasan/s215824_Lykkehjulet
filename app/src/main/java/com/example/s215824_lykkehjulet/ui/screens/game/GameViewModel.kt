@@ -69,41 +69,49 @@ class GameViewModel : ViewModel() {
     private fun pickRandomWordFromCategory(): String {
         val category = Category()
 
-        if (currentCategory == "Dyr") {
-            // Get word from animals
-            currentWord = category.animals().shuffled().last()
-            // Remove word from category
-            category.animals().remove(currentWord)
-        } else if (currentCategory == "Biler") {
-            // Get word from cars
-            currentWord = category.cars().shuffled().last()
-            // Remove word from category
-            category.cars().remove(currentWord)
-        } else if (currentCategory == "Job titler") {
-            // Get word from job titles
-            currentWord = category.jobTitle().shuffled().last()
-            // Remove word from category
-            category.jobTitle().remove(currentWord)
-        } else if (currentCategory == "Tøj") {
-            // Get word from clothes
-            currentWord = category.clothes().shuffled().last()
-            // Remove word from category
-            category.clothes().remove(currentWord)
-        } else if (currentCategory == "Danske byer") {
-            // Get word from cities
-            currentWord = category.cities().shuffled().last()
-            // Remove word from category
-            category.cities().remove(currentWord)
-        } else if (currentCategory == "Verdens lande") {
-            // Get word from countries
-            currentWord = category.countries().shuffled().last()
-            // Remove word from category
-            category.countries().remove(currentWord)
-        } else if (currentCategory == "Verdens byer") {
-            // Get word from world cities
-            currentWord = category.worldCities().shuffled().last()
-            // Remove word from category
-            category.worldCities().remove(currentWord)
+        when (currentCategory) {
+            "Dyr" -> {
+                // Get word from animals
+                currentWord = category.animals().shuffled().last()
+                // Remove word from category
+                category.animals().remove(currentWord)
+            }
+            "Biler" -> {
+                // Get word from cars
+                currentWord = category.cars().shuffled().last()
+                // Remove word from category
+                category.cars().remove(currentWord)
+            }
+            "Job titler" -> {
+                // Get word from job titles
+                currentWord = category.jobTitle().shuffled().last()
+                // Remove word from category
+                category.jobTitle().remove(currentWord)
+            }
+            "Tøj" -> {
+                // Get word from clothes
+                currentWord = category.clothes().shuffled().last()
+                // Remove word from category
+                category.clothes().remove(currentWord)
+            }
+            "Danske byer" -> {
+                // Get word from cities
+                currentWord = category.cities().shuffled().last()
+                // Remove word from category
+                category.cities().remove(currentWord)
+            }
+            "Verdens lande" -> {
+                // Get word from countries
+                currentWord = category.countries().shuffled().last()
+                // Remove word from category
+                category.countries().remove(currentWord)
+            }
+            "Verdens byer" -> {
+                // Get word from world cities
+                currentWord = category.worldCities().shuffled().last()
+                // Remove word from category
+                category.worldCities().remove(currentWord)
+            }
         }
 
         return currentWord

@@ -7,6 +7,7 @@ const val CATEGORY = "category"
 const val ATTEMPTS = "attempts"
 
 sealed class Screen(val route: String) {
+    object SplashScreen : Screen(route = "splash")
     object MenuScreen : Screen(route = "menu")
     object RulesScreen : Screen(route = "rules")
     object GameScreen : Screen(route = "game")

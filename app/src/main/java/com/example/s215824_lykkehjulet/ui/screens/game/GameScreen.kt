@@ -13,6 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -52,7 +53,12 @@ fun GameScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(90, 49, 160))
+            .background(
+                Brush.verticalGradient(
+                    0.0f to Color(0xFF533A86),
+                    0.7f to Color(0xFF161A1E)
+                )
+            )
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -391,7 +397,7 @@ fun Characters(
 
             val color = if (isClicked.value) remember {
                 mutableStateOf(
-                    Color(195, 120, 220)
+                    Color(153, 53, 182, 255)
                 )
             } else remember {
                 mutableStateOf(
@@ -489,7 +495,7 @@ fun WheelSpunButton(turnOrStopMessage: Boolean, enabled: Boolean, onClick: () ->
             Button(
                 onClick = onClick,
                 shape = RoundedCornerShape(100),
-                colors = ButtonDefaults.buttonColors(Color(195, 120, 220)),
+                colors = ButtonDefaults.buttonColors(Color(153, 53, 182, 255)),
                 enabled = true,
                 modifier = Modifier
                     .height(45.dp)
@@ -506,7 +512,7 @@ fun WheelSpunButton(turnOrStopMessage: Boolean, enabled: Boolean, onClick: () ->
             Button(
                 onClick = onClick,
                 shape = RoundedCornerShape(100),
-                colors = ButtonDefaults.buttonColors(Color(195, 120, 220)),
+                colors = ButtonDefaults.buttonColors(Color(153, 53, 182, 255)),
                 enabled = false,
                 modifier = Modifier
                     .height(45.dp)
@@ -591,7 +597,7 @@ fun PickedFromWheel(assignedPoint: Int) {
         )
     } else {
         Text(
-            text = "Du rollede desværre 0. Du mister derfor alle dine point :(",
+            text = "Du rollede 0. Du mister derfor alle dine point!",
             fontFamily = manropeFamily,
             fontWeight = FontWeight.ExtraBold,
             fontSize = 16.sp,

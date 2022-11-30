@@ -1,4 +1,4 @@
-package com.example.s215824_lykkehjulet.ui.screens.game
+package com.example.s215824_lykkehjulet.ui.screens.gameWon
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -9,18 +9,18 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.s215824_lykkehjulet.R
 import com.example.s215824_lykkehjulet.manropeFamily
 import com.example.s215824_lykkehjulet.ui.navigation.Screen
+import com.example.s215824_lykkehjulet.ui.screens.game.GameViewModel
 
 @Composable
 fun GameWonScreen(
@@ -36,7 +36,12 @@ fun GameWonScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(90, 49, 160))
+            .background(
+                Brush.verticalGradient(
+                    0.0f to Color(0xFF533A86),
+                    0.7f to Color(0xFF161A1E)
+                )
+            )
             .padding(top = 100.dp)
     ) {
         Text(
@@ -150,7 +155,7 @@ private fun PlayAgainButton(gameViewModel: GameViewModel, navController: NavCont
             gameViewModel.playAgain()
         },
         shape = RoundedCornerShape(100),
-        colors = ButtonDefaults.buttonColors(Color(195, 120, 220)),
+        colors = ButtonDefaults.buttonColors(Color(153, 53, 182, 255)),
         enabled = true,
         modifier = Modifier
             .height(60.dp)
@@ -173,7 +178,7 @@ private fun GoToMenuButton(gameViewModel: GameViewModel, navController: NavContr
             gameViewModel.playAgain()
         },
         shape = RoundedCornerShape(100),
-        colors = ButtonDefaults.buttonColors(Color(180, 155, 255)),
+        colors = ButtonDefaults.buttonColors(Color(155, 107, 254, 255)),
         enabled = true,
         modifier = Modifier
             .height(60.dp)

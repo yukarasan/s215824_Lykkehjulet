@@ -12,9 +12,10 @@ import androidx.navigation.navArgument
 import com.example.s215824_lykkehjulet.ui.screens.game.GameViewModel
 import com.example.s215824_lykkehjulet.ui.screens.menu.MenuScreen
 import com.example.s215824_lykkehjulet.ui.screens.rules.RulesScreen
-import com.example.s215824_lykkehjulet.ui.screens.game.GameLostScreen
+import com.example.s215824_lykkehjulet.ui.screens.gameLost.GameLostScreen
 import com.example.s215824_lykkehjulet.ui.screens.game.GameScreen
-import com.example.s215824_lykkehjulet.ui.screens.game.GameWonScreen
+import com.example.s215824_lykkehjulet.ui.screens.gameWon.GameWonScreen
+import com.example.s215824_lykkehjulet.ui.screens.loading.SplashScreen
 
 /**
  * This file contains a navigation graph. You are able to navigate arguments between the different
@@ -32,7 +33,11 @@ fun SetupNavGraph(
 ) {
     val gameUiState by gameViewModel.uiState.collectAsState()
 
-    NavHost(navController = navController, startDestination = Screen.MenuScreen.route) {
+    NavHost(navController = navController, startDestination = Screen.SplashScreen.route) {
+        composable(route = Screen.SplashScreen.route) {
+            SplashScreen(navController = navController)
+        }
+
         composable(route = Screen.MenuScreen.route) {
             MenuScreen(navController = navController)
         }

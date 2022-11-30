@@ -11,6 +11,7 @@ import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -34,7 +35,12 @@ fun RulesScreen(navController: NavController) {
         contentPadding = PaddingValues(30.dp),
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(90, 49, 160))
+            .background(
+                Brush.verticalGradient(
+                    0.0f to Color(0xFF533A86),
+                    0.7f to Color(0xFF161A1E)
+                )
+            )
     ) {
         item {
             BackButton(
@@ -130,7 +136,8 @@ private fun BackButton(navController: NavController, modifier: Modifier = Modifi
     Button(
         onClick = { navController.popBackStack() }, // Instead of navigating, we pop the stack
         shape = RoundedCornerShape(100),
-        colors = ButtonDefaults.buttonColors(backgroundColor = Color(195, 120, 220)),
+        colors = ButtonDefaults.buttonColors(backgroundColor = Color(153, 53, 182, 255)),
+        elevation = ButtonDefaults.elevation(10.dp),
         modifier = modifier
     ) {
         Image(
@@ -151,14 +158,14 @@ private fun RuleBox(
 ) {
     Card(
         shape = RoundedCornerShape(14.dp),
-        backgroundColor = Color(180, 155, 255),
+        backgroundColor = Color(181, 155, 255, 255),
         elevation = 5.dp,
         modifier = modifier
     ) {
         Column {
             Text(
                 text = title,
-                color = Color.Black,
+                color = Color.White,
                 fontSize = 30.sp,
                 fontFamily = manropeFamily,
                 fontWeight = FontWeight.Bold,
@@ -166,7 +173,7 @@ private fun RuleBox(
             )
             Text(
                 text = description,
-                color = Color.Black,
+                color = Color.White,
                 fontSize = 20.sp,
                 fontFamily = manropeFamily,
                 fontWeight = FontWeight.Bold,
