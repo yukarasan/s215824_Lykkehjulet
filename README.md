@@ -9,7 +9,7 @@ And then modified to fulfill the requirements posed by the assignment.
 List of rules to be implemented: 
 * The game is for one player
 * The player start with 0 in their bank
-* When the game starts, a word is randamly chosen from predefined categories.
+* When the game starts, a word is randomly chosen from a list of predefined categories.
   * The word and category is displayed on the screen
     * The word is initially hidden
 * In the first round, the wheel is "spun" by tapping a button. Here a player can land on: 
@@ -23,21 +23,22 @@ List of rules to be implemented:
   * The game is lost when the player looses all of their lifes before the game is won.
 * The game should be able to be played again if a player has won or lost their current game  
 
+# Loading
+![loading](https://user-images.githubusercontent.com/91070526/204875684-9926695a-bb19-44ad-a63d-e2360f4fad9b.jpg)
 
 # Menu
-<img width="253" alt="menu1" src="https://user-images.githubusercontent.com/91070526/203660791-fa90532b-b621-475e-97cc-8209fa9674eb.png">
+![menu](https://user-images.githubusercontent.com/91070526/204875718-18e7cfca-44fd-4be8-8f77-8f1561d80005.jpg)
 
 # Rules
-<img width="252" alt="rules1" src="https://user-images.githubusercontent.com/91070526/203660794-945febdc-db5c-4bf3-907a-f8486efce532.png">
+![rules](https://user-images.githubusercontent.com/91070526/204875746-04f10593-bc80-43bf-a346-9ef2bab593b5.jpg)
 
 # Game 
-<img width="255" alt="game11" src="https://user-images.githubusercontent.com/91070526/203660806-6bfeea98-9002-4efe-95e3-b9aa92171b31.png">
-<img width="254" alt="game22" src="https://user-images.githubusercontent.com/91070526/203660810-4d754d28-184c-45d0-853b-71362dd375b1.png">
+![GameSpinning](https://user-images.githubusercontent.com/91070526/204875819-951c6965-5320-4d32-b5d1-76cb976ca21e.jpg)
+![GameWrongAnswer](https://user-images.githubusercontent.com/91070526/204875845-b739098c-b646-487d-802b-956e22541b71.jpg)
+![gameCorrectAnswer](https://user-images.githubusercontent.com/91070526/204875870-1ac838a4-e7cf-43df-9c56-84f1e6de1a9a.jpg)
 
 # Won
-<img width="251" alt="won1" src="https://user-images.githubusercontent.com/91070526/203660814-16bf4b24-e455-4563-a1ec-118e285e60c2.png">
+![won](https://user-images.githubusercontent.com/91070526/204875888-8911c37a-b80c-491a-97cb-33353efc8d49.jpg)
 
 # Lost
-<img width="249" alt="lost1" src="https://user-images.githubusercontent.com/91070526/203660820-ef3de645-4efb-49cf-9a81-9b312e992854.png">
-
-
+![lost](https://user-images.githubusercontent.com/91070526/204875919-81d0fc11-ea50-47e2-a746-cbe4f0de5c6b.jpg)
