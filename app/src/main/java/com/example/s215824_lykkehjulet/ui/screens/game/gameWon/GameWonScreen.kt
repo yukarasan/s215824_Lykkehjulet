@@ -1,4 +1,4 @@
-package com.example.s215824_lykkehjulet.ui.screens.gameWon
+package com.example.s215824_lykkehjulet.ui.screens.game.gameWon
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -16,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.s215824_lykkehjulet.R
 import com.example.s215824_lykkehjulet.manropeFamily
@@ -25,7 +26,7 @@ import com.example.s215824_lykkehjulet.ui.screens.game.GameViewModel
 @Composable
 fun GameWonScreen(
     navController: NavController,
-    gameViewModel: GameViewModel,
+    gameViewModel: GameViewModel = viewModel(),
     point: Int,
     lives: Int,
     word: String,

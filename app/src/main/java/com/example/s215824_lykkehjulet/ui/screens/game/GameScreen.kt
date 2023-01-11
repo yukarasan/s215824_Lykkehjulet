@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.s215824_lykkehjulet.R
@@ -33,9 +34,10 @@ import kotlinx.coroutines.delay
 @Composable
 fun GameScreen(
     navController: NavController,
-    gameUiState: GameUiState,
-    gameViewModel: GameViewModel
+    gameViewModel: GameViewModel = viewModel()
 ) {
+    val gameUiState by gameViewModel.uiState.collectAsState()
+
     /**
      * I could not make the wheel spin work without declaring the states here.
      * Therefore I've decided, even though it is not best practice, to keep them here.
@@ -648,9 +650,5 @@ fun IsGuessCorrectOrNot(uiState: GameUiState) {
 @Preview
 @Composable
 fun GameScreenPreview() {
-    GameScreen(
-        navController = rememberNavController(),
-        gameUiState = GameUiState(),
-        gameViewModel = GameViewModel()
-    )
+    GameScreen(navController = rememberNavController())
 }

@@ -198,7 +198,8 @@ class GameViewModel : ViewModel() {
             correctGuessedCharacter = uiState.value.guessedCharacter
 
             // Used to make a list of guessed characters that should be displayed on the word.
-            _uiState.value.listOfGuessedCharacters = uiState.value.listOfGuessedCharacters + correctGuessedCharacter
+            _uiState.value.listOfGuessedCharacters =
+                uiState.value.listOfGuessedCharacters + correctGuessedCharacter
 
             /*
             This for-loop checks for all the char values in currentWord, if they are equal to
